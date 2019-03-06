@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<p>ToString</p>
+	<script type="text/javascript">
+		let value = true;
+		alert(typeof value);//boolean
+		value = String(value);//"true"
+		alert(typeof value);//string
+	</script>
+
+	<p>ToNumber</p>
+	<script type="text/javascript">
+		alert( "6" / "2" ); // 3, strings are converted to numbers
+	</script>
+
+	<script type="text/javascript">
+		let str = '123';
+		alert(typeof str);//string
+		let num = Number(str);//number type 123
+		alert(typeof num);//number
+	</script>
+
+	alert( Number("   123   ") ); // 123
+	<br>
+	alert( Number("123z") );      // NaN (error reading a number at "z")
+	<br>
+	alert( Number(true) );        // 1
+	<br>
+	alert( Number(false) );       // 0
+	
+	<br>
+	<p>加号’+’ 连接字符串</p>
+	几乎所有的算术运算符都将值转换为数字，加号 + 是个例外。如果其中一个运算元是字符串，则另一个也会转换为字符串。
+	<br>
+	alert( 1 + '2' ); // '12' (字符串在加号右边)
+	<br>
+	alert( '1' + 2 ); // '12' (字符串在加号左边)
+
+	<p>ToBoolean</p>
+	alert( Boolean(1) ); // true
+	<br>
+	alert( Boolean(0) ); // false
+	<br>
+	alert( Boolean("hello") ); // true
+	<br>
+	alert( Boolean("") ); // false
+	<br>
+	alert( Boolean("0") ); // true
+	<br>
+	alert( Boolean(" ") ); // 空白, 也是 true (任何非空字符串是 true)
+</body>
+</html>
