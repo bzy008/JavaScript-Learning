@@ -1,3 +1,3 @@
 # JavaScript-Learning
-My note through learning JavaScript
+My notes through learning JavaScript. <br>
 All code come from https://zh.javascript.info/
