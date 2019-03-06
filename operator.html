@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	++
+	<script type="text/javascript">
+		let counter = 1;
+		let a = ++counter;
+		alert(a);//2
+	</script>
+
+	<script type="text/javascript">
+		let counter = 1;
+		let a = counter++;
+		alert(a);//1
+	</script>
+
+	<script type="text/javascript">
+		let counter = 0;
+		counter++;
+		++counter;
+		alert( counter ); // 2
+	</script>
+
+	<script type="text/javascript">
+		let counter = 1;
+		alert( 2 * counter );
+		counter++;//2
+	</script>
+
+	<script type="text/javascript">
+		let a = (1 + 2, 3 + 4);
+		alert( a ); // 7 (3 + 4 的结果)
+	</script>
+</body>
+</html>
