@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	this 是在运行时求值的。它可以是任何值。
+
+	<script type="text/javascript">
+		let user = {
+  		name: "John",
+  		age: 30,
+  		sayHi() {
+    		alert(this.name);
+  			}
+		};
+		user.sayHi(); // John
+	</script>
+
+	<script type="text/javascript">
+		let user = { name: "John" };
+		let admin = { name: "Admin" };
+		function sayHi() {
+  			alert( this.name );
+		}
+		user.f = sayHi;
+		admin.f = sayHi;
+		user.f(); // John  (this == user)
+		admin.f(); // Admin  (this == admin)
+	</script>
+
+	<script type="text/javascript">
+		let calculator = {
+			read() {
+				this.a = +prompt ("a?",0);
+				this.b = +prompt ("b?", 0);
+			},
+
+			sum() {
+				return this.a + this.b;
+			},
+
+			mul() {
+				return  this.a * this.b;
+			}
+		};
+
+		calculator.read();
+		alert( calculator.sum() );
+		alert( calculator.mul() );
+	</script>
+</body>
+</html>

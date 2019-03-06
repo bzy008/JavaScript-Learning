@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		let user = { name: "John" };
+		let id = Symbol("id");
+		user[id] = "ID Value";
+		alert( user[id] ); 
+	</script>
+
+	<script type="text/javascript">
+		let id = Symbol("id");
+		let user = {
+  		name: "John",
+  		age: 30,
+  		[id]: 123
+		};
+		for (let key in user) alert(key); // name, age (no symbols)
+		alert( "Direct: " + user[id] );
+	</script>
+
+	<script type="text/javascript">
+		let id = Symbol("id");
+		let user = {
+  		[id]: 123
+		};
+		let clone = Object.assign({}, user);
+		alert( clone[id] ); // 123
+	</script>
+
+	global symbol
+	<script type="text/javascript">
+		let id = Symbol.for("id"); 
+		let idAgain = Symbol.for("id");
+		alert( id === idAgain );
+	</script>
+
+	symbol.keyFor
+	<script type="text/javascript">
+		let sym = Symbol.for("name");
+		let sym2 = Symbol.for("id");
+		alert( Symbol.keyFor(sym) ); // name
+		alert( Symbol.keyFor(sym2) ); // id
+	</script>
+	1.因此我们可以使用 Symbol 属性“秘密地”将一些东西隐藏到我们需要的 object 中，但其他人不应该看到。
+	2.JavaScript 使用了许多系统 Symbol，这些 Symbol 可以作为 Symbol.* 访问。
+</body>
+</html>

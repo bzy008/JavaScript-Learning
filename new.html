@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function User(name) {
+  			this.name = name;
+  			this.isAdmin = false;
+		}
+		let user = new User("Jack");
+		alert(user.name); // Jack
+		alert(user.isAdmin); // false
+	</script>
+
+	<script type="text/javascript">
+		function User(name) {
+  			this.name = name;
+
+  			this.sayHi = function() {
+    		alert( "My name is: " + this.name );
+  			};
+		}
+
+		let john = new User("John");
+
+		john.sayHi(); // My name is: John
+
+	</script>
+
+	<script type="text/javascript">
+		let obj = {};
+		function A(){
+			return obj;
+		}
+		function B(){
+			return obj;
+		}
+
+		alert(new A() == new B());
+	</script>
+
+	<script type="text/javascript">
+		function Calculator() {
+			this.read = function(){
+				this.a = +prompt("a?",0);
+				this.b = +prompt("b?",0);
+			};
+			this.sum = function(){
+				return this.a + this.b;
+			};
+			this.mul = function(){
+				return this.a * this.b;
+			};
+		}
+		let calculator = new Calculator();
+		calculator.read();
+		alert( "Sum=" + calculator.sum() );
+		alert( "Mul=" + calculator.mul() );
+
+	</script>
+
+	<script type="text/javascript">
+		function Accumulator(startingValue){
+			this.value = startingValue;
+			this.read = function(){
+				this.value += +prompt("new num", 0);
+			};
+		}
+		let accumulator = new Accumulator(1);
+		accumulator.read();
+		accumulator.read();
+		alert(accumulator.value);
+	</script>
+
+	<script type="text/javascript">
+		function Calculator() {
+			let methods = {
+        	"-": (a, b) => a - b,
+        	"+": (a, b) => a + b
+      	};
+    
+      	this.calculate = function(str) {
+    
+        	let split = str.split(' '),
+         	a = +split[0],
+          	op = split[1],
+          	b = +split[2]
+    
+        if (!methods[op] || isNaN(a) || isNaN(b)) {
+        	return NaN;
+        }
+    
+        return methods[op](a, b);
+      }
+    
+      this.addMethod = function(name, func) {
+        methods[name] = func;
+      };
+    }
+    let calc = new Calculator;
+
+	alert( calc.calculate("3 + 7") ); // 10
+
+	let powerCalc = new Calculator;
+	powerCalc.addMethod("*", (a, b) => a * b);
+	powerCalc.addMethod("/", (a, b) => a / b);
+	powerCalc.addMethod("**", (a, b) => a ** b);
+	let result = powerCalc.calculate("2 ** 3");
+	alert( result ); // 8
+	</script>
+</body>
+</html>
