@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function pow(x,n){
+			let result = x;
+			for ( let i=1; i<n; i++){
+				result = result * x;
+			}
+			return result;
+		}
+		let x = prompt("x?", '');
+		let n = prompt("n?", '');
+		if (n <= 1) {
+  			alert(`Power ${n} is not supported,
+    		use an integer greater than 0`);
+		} else {
+  			alert( pow(x, n) );
+		}
+	</script>
+
+	<script type="text/javascript">
+		function sayHi() {
+  			alert( "Hello" );
+		}
+		alert( sayHi ); // 查看函数代码
+	</script>
+
+	<!-- 回调函数 -->
+	<script type="text/javascript">
+		function ask(question, yes, no) {
+  			if (confirm(question)) yes()
+  			else no();
+		}
+
+		function showOk() {
+  			alert( "You agreed." );
+		}
+
+		function showCancel() {
+  			alert( "You canceled the execution." );
+		}
+		// usage: functions showOk, showCancel are passed as arguments to ask
+		ask("Do you agree?", showOk, showCancel);
+	</script> 
+
+	<script type="text/javascript">
+		let age = prompt("What is your age?", 18);
+		let welcome = (age < 18) ?
+  		function() { alert("Hello!"); } :
+  		function() { alert("Greetings!"); };
+		welcome(); // ok now
+
+		//箭头函数
+		//let age = prompt("What is your age?", 18);
+		//let welcome = (age < 18) ?
+		//() => alert('Hello') :
+		//() => alert("Greetings!");
+		//welcome(); // ok now
+	</script>
+
+	<script type="text/javascript">
+		let sum = (a, b) => a + b;
+		/* 箭头函数更短：
+		let sum = function(a, b) {
+		return a + b;
+		};
+		*/
+		alert( sum(1, 2) ); // 3
+	</script>
+</body>
+</html>

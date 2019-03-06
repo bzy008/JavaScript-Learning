@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		for (i=2; i<=10; i++){
+			if (i % 2 == 0){
+				alert(i);
+			}
+		}
+	</script>
+
+	<script type="text/javascript">
+		let i = 0;
+		while (i < 3){
+			alert(`number ${i}!`)
+			i ++;
+		}
+	</script>
+
+	<script type="text/javascript">
+		let num;
+		do {
+			num = promopt("enter a number greater than 100", 0);
+		} while (num <=100 && num);
+	</script>
+
+	<script type="text/javascript">
+		let n = 10;
+		for ( let i=2; i<=n, i++){
+			for ( let j=2, j<i, j++){
+				if (i % j == 0) continue;					
+			}
+			alert(i);
+		}
+	</script>
+</body>
+</html>

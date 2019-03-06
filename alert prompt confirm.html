@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<p>alert</p>
+	alert(message);
+	<script type="text/javascript">
+		alert("Hello");
+	</script>
+
+	<p>prompt</p>
+	result = prompt(title[, default]);
+	<script type="text/javascript">
+		let age = prompt('How old are you?', 100);
+		alert(`You are ${age} years old!`); // You are 100 years old!
+	</script>
+
+	<p>confirm</p>
+	result = confirm(question);
+	<script type="text/javascript">
+		let isBoss = confirm("Are you the boss?");
+		alert( isBoss ); // true if OK is pressed
+	</script>
+
+	<script type="text/javascript">
+		let name = prompt('your name:', "");
+		alert(name);
+	</script>
+</body>
+</html>

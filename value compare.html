@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	alert( 'Z' > 'A' ); // true
+	alert( 'Glow' > 'Glee' ); // true
+	alert( 'Bee' > 'Be' ); // true
+
+	<script type="text/javascript">
+		let a = 0;
+		alert( Boolean(a) ); // false
+		let b = "0";
+		alert( Boolean(b) ); // true
+		alert(a == b); // true!
+	</script>
+
+	alert( 0 == false ); // true
+	<br>
+	alert( 0 === false ); // false，比较不同类型的值
+	<br>
+	alert( null === undefined ); // false
+    <br>
+    alert( null == undefined ); // true
+    <br>
+    <script type="text/javascript">
+    	alert( null > 0 );  // (1) false
+		alert( null == 0 ); // (2) false
+		alert( null >= 0 ); // (3) true
+    </script>
+
+    <script type="text/javascript">
+    	alert( undefined > 0 ); // false (1)
+		alert( undefined < 0 ); // false (2)
+		alert( undefined == 0 ); // false (3)
+    </script>
+</body>
+</html>
