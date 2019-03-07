@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	Math.floor
+	向下舍入：3.1 变成 3，-1.1 变成 -2。
+	<br>
+	Math.ceil
+	向上舍入：3.1 变成 4，-1.1 变成 -1。
+	<br>
+	Math.round
+	向最近的整数舍入：3.1 变成 3, 3.6变成4，-1.1变成-1`。
+	<br>
+	Math.trunc（IE 浏览器不支持这个方法）
+	删除小数点后的所有内容而不舍入：3.1 变成 3，-1.1 变成 -1。
+
+	<script type="text/javascript">
+		let num = 12.34;
+		alert( num.toFixed(1) ); // "12.3"
+	</script>
+
+	alert( 0.1 + 0.2 ); // 0.30000000000000004
+	<br>
+	let sum = 0.1 + 0.2;
+	alert( +sum.toFixed(2) ); // 0.3
+
+	<script type="text/javascript">
+		let sum = 0.1 + 0.2;
+		alert( sum.toFixed(2) ); // 0.30
+	</script>
+
+	<script type="text/javascript">
+		alert( parseInt('100px') ); // 100
+		alert( parseFloat('12.5em') ); // 12.5
+		alert( parseInt('12.3') ); // 12, only the integer part is returned
+		alert( parseFloat('12.3.4') ); // 12.3, the second point stops the reading
+	</script>
+
+	alert( Math.random() ); // 0.1234567894322
+	alert( Math.max(3, 5, -10, 0, 1) ); // 5
+	alert( Math.min(1, 2) ); // 1
+	alert( Math.pow(2, 10) ); // 2 in power 10 = 1024
+	<br>
+	alert( isNaN(NaN) ); // true
+	alert( isNaN("str") ); // true
+	alert( NaN === NaN ); // false
+	alert( isFinite("15") ); // true
+	alert( isFinite("str") ); // false, because a special value: NaN
+	alert( isFinite(Infinity) ); // false, because a special value: Infinity
+	<script type="text/javascript">
+		let num = +prompt("Enter a number", '');
+
+		// 结果会是 true，除非你输入无穷大，无穷大或不是数字
+		alert( isFinite(num) );
+	</script>
+
+
+	<script type="text/javascript">
+		let a = +prompt("1st num", 0);
+		let b = +prompt("2nd num", 0);
+		alert(a + b);
+	</script>
+
+	<script type="text/javascript">
+		alert( 6.35.toFixed(1) ); // 6.3
+	</script>
+
+	<script type="text/javascript">
+		alert( Math.round(6.35 * 10) / 10); // 6.35 -> 63.5 -> 64(rounded) -> 6.4
+	</script>
+
+	<script type="text/javascript">
+		function readNumber(){
+			let num;
+
+  			do {
+    		num = prompt("Enter a number please?", 0);
+  			} while ( !isFinite(num) );
+
+  			if (num === null || num === '') return null;
+
+  			return +num;
+			}
+		alert(`Read: ${readNumber()}`);
+	</script>
+
+	<script type="text/javascript">
+		function random(min, max) {
+		//从最小到最大的随机数	
+  		return min + Math.random() * (max - min);
+		}
+
+		alert( random(1, 5) );
+		alert( random(1, 5) );
+		alert( random(1, 5) );
+	</script>
+
+	<script type="text/javascript">
+		//从最小到最大的随机整数
+		function randomInteger(min, max) {
+  		// here rand is from min to (max+1,另一种方法是使用 Math.floor 作为从 min 到 max+1 的随机数：
+  		 let rand = min + Math.random() * (max + 1 - min);
+  		return Math.floor(rand);
+		}
+		alert( randomInteger(1, 3) );
+	</script>
+
+	<script type="text/javascript">
+		function randomInteger(min, max) {
+  		// now rand is from  (min-0.5) to (max+0.5),为了确保相同的时间间隔，我们可以生成从 0.5 到 3.5 的值，从而将所需的概率添加到边缘：
+  		let rand = min - 0.5 + Math.random() * (max - min + 1);
+  		return Math.round(rand);
+		}
+
+		alert( randomInteger(1, 3) );
+	</script>
+</body>
+</html>

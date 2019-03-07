@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	pop
+	取出并返回数组的最后一个元素：
+	<script type="text/javascript">
+		let fruits = ["Apple", "Orange", "Pear"];
+		alert( fruits.pop() ); // 移除 "Pear" 然后 alert 显示出来
+		alert( fruits ); // Apple, Orange
+	</script>
+
+	push
+	在数组末端添加元素：
+	<script type="text/javascript">
+		let fruits = ["Apple", "Orange"];
+		fruits.push("Pear");
+		alert( fruits ); // Apple, Orange, Pear
+	</script>
+
+	shift
+	取出数组的第一个元素并返回它：
+	let fruits = ["Apple", "Orange", "Pear"];
+	alert( fruits.shift() ); // 移除 Apple 然后 alert 显示出来
+	alert( fruits ); // Orange, Pear
+
+	unshift
+	在数组的前端添加元素：
+	let fruits = ["Orange", "Pear"];
+	fruits.unshift('Apple');
+	alert( fruits ); // Apple, Orange, Pear
+
+	<script type="text/javascript">
+		let fruits = ["Apple"];
+		fruits.push("Orange", "Peach");
+		fruits.unshift("Pineapple", "Lemon");
+		// ["Pineapple", "Lemon", "Apple", "Orange", "Peach"]
+		alert( fruits );
+	</script>
+
+	循环
+	<script type="text/javascript">
+		let arr = ["Apple", "Orange", "Pear"];
+		for (let 1=0, i<arr.length, i++){
+			alert( arr[i] );
+		}
+	</script>
+	let fruits = ["Apple", "Orange", "Plum"];
+	// 迭代数组元素
+	for (let fruit of fruits) {
+  		alert( fruit );
+	}
+	
+	所以，清空数组最好的方法就是：arr.length = 0;。
+
+	toString
+	<script type="text/javascript">
+		let arr = [1, 2, 3];
+		alert( arr ); // 1,2,3
+		alert( String(arr) === '1,2,3' ); // true
+	</script>
+
+	<script type="text/javascript">
+		let styles = ["Jazz", "Blues"];
+		styles.push("Rock-n-Roll");
+		styles[Math.floor((styles.length - 1) / 2)] = "Classics";
+		alert(styles.unshift(0));
+		styles.unshift("Rap", "Reggae");
+	</script>
+
+	<script type="text/javascript">
+		function sumInput() {
+			let numbers = [];
+			while (true) {
+				let value = prompt("num",0);
+				if (value === null || value === "" || !isFinite(value)) break;
+				number.push(value);
+			}
+			let sum = 0;
+			for (let number of numbers) {
+				sum += number;
+			}
+			return sum;
+		}
+		alert( sumInput() );
+	</script>
+
+	<script type="text/javascript">
+		function getMaxSubSum(arr) {
+			let MaxSum = 0;
+			let SubSum = 0;
+			for (let item of arr) {
+				SubSum += item;
+				MaxSum = Math.max(MaxSum, SubSum);
+				if (SubSum < 0) SubSum = 0;
+			}
+			return MaxSum;
+		}
+		alert( getMaxSubSum([-1, 2, 3, -9]) ); // 5
+	</script>
+
+	<script type="text/javascript">
+		function getMaxSubSum(arr){
+			let MaxSum = 0;
+			for (let i=0, i<arr.length, i++){
+				let SubSum =0;
+				for (let j=i, j<arr.length, j++){
+					SubSum += arr[j];
+					MaxSum = Math.max(MaxSum, SubSum);
+				}
+			}
+			return MaxSum;
+		}
+	</script>
+</body>
+</html>

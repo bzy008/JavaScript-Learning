@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	let single = 'single-quoted';
+	let double = "double-quoted";
+
+	let backticks = `backticks`;
+	<br>
+	function sum(a, b) {
+  	return a + b;
+	}
+
+	alert(`1 + 2 = ${sum(1, 2)}.`); // 1 + 2 = 3.
+
+	<script type="text/javascript">
+		let guestList = `Guests:
+ 		* John
+ 		* Pete
+ 		* Mary
+		`;
+
+		alert(guestList); // 客人清单，多行
+	</script>
+
+	<script type="text/javascript">
+		let guestList = "Guests:\n * John\n * Pete\n * Mary";
+
+		alert(guestList); // a multiline list of guests
+	</script>
+
+	<script type="text/javascript">
+		let str = `Hello`;
+		// the first character
+		alert( str[0] ); // H
+		alert( str.charAt(0) ); // H
+		// the last character
+		alert( str[str.length - 1] ); // o
+	</script>
+
+	let str = `Hello`;
+	alert( str[1000] ); // undefined
+	alert( str.charAt(1000) ); // '' (an empty string)
+
+	<script type="text/javascript">
+		for (let char of "Hello") {
+  		alert(char); // H,e,l,l,o (char becomes "H", then "e", then "l" etc)
+		}
+	</script>
+	字符串不可变
+	let str = 'Hi';
+	str[0] = 'h'; // error
+	alert( str[0] ); // 无法运行
+
+	<br>
+	改变大小写
+	alert( 'Interface'.toUpperCase() ); // INTERFACE
+	alert( 'Interface'.toLowerCase() ); // interface
+	alert( 'Interface'[0].toLowerCase() ); // 'i'
+	<br>
+	查找子字符串
+	<script type="text/javascript">
+		let str = 'Widget with id';
+
+		alert( str.indexOf('Widget') ); // 0，因为 'Widget' 一开始就被找到
+		alert( str.indexOf('widget') ); // -1，没有找到，检索是大小写敏感的
+
+		alert( str.indexOf("id") ); // 1，"id" 在位置 1 处（...idget 和 id）
+	</script>
+
+	let str = 'Widget with id';
+
+	alert( str.indexOf('id', 2) ) // 12
+
+	<script type="text/javascript">
+		let str = 'As sly as a fox, as strong as an ox';
+		let target = 'as';
+		while(true) {
+			let foundPos = str.indexOf(target, pos);
+			if (foundPos == -1) {
+				break;
+			}
+			alert( `Found at ${foundPos}`);
+			pos = foundPos + 1;
+		}
+	</script>
+
+	The bitwise NOT trick ~
+	alert( ~2 ); // -3, the same as -(2+1)
+	alert( ~1 ); // -2, the same as -(1+1)
+	alert( ~0 ); // -1, the same as -(0+1)
+	alert( ~-1 ); // 0, the same as -(-1+1)
+
+	<script type="text/javascript">
+		let str = "Widget";
+		if (~str.indexOf("Widget")) {
+  		alert( 'Found it!' ); // works
+		}
+		//let str = "Widget with id";
+		// if (str.indexOf("Widget") != -1) {
+		//     alert("We found it"); // 现在运行了！
+		// }
+	</script>
+
+	<br>
+	includes, startsWith, endsWith 来返回 true/false
+	alert( "Widget with id".includes("Widget") ); // true
+	alert( "Hello".includes("Bye") ); // false
+	<br>
+	alert( "Midget".includes("id") ); // true
+	alert( "Midget".includes("id", 3) ); // false, 位置 3 没有 "id"
+	<br>
+	alert( "Widget".startsWith("Wid") ); // true, "Widget" 以 "Wid" 开始
+	alert( "Widget".endsWith("get") );   // true, "Widget" 以 "get" 结束
+
+	<br>
+	获取子字符串
+	method	                selects…	                            negatives
+	slice(start, end)	    from start to end (not including end)	allows negatives
+	substring(start, end)	between start and end	                negative values mean 0
+	substr(start, length)	from start get length characters	    allows negative start
+
+
+	<br>
+	compare
+	alert( 'Österreich'.localeCompare('Zealand') ); // -1
+
+	<script type="text/javascript">
+		function ucFirst(str){
+			if (!str) {
+				return str;
+			}
+			return str[0].toUpperCase() + str.slice(1);
+		}
+		ucFirst("john") == "John";
+	</script>
+
+	<script type="text/javascript">
+		function checkSpam(str) {
+			let lowerStr = str.toLowerCase();
+			return lowerStr.includes('viagra') || lowerStr.includes('xxx');
+		}
+		alert( checkSpam('buy ViAgRA now') );
+		alert( checkSpam('free xxxxx') );
+		alert( checkSpam("innocent rabbit") );
+	</script>
+
+	<script type="text/javascript">
+		function truncate(str, maxlength) {
+  		return (str.length > maxlength) ?
+    	str.slice(0, maxlength - 1) + '…' : str;
+	}
+	</script>
+
+	<script type="text/javascript">
+		function extractCurrencyValue(str) {
+      	return +str.slice(1);
+    	}
+		alert( extractCurrencyValue('$120') === 120 ); 
+	</script>
+</body>
+</html>
