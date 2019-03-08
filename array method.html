@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	arr.splice(index[, deleteCount, elem1, ..., elemN])
+	<script type="text/javascript">
+		let arr = ["I", "study", "JavaScript"];
+		arr.splice(1, 1); // from index 1 remove 1 element
+		alert( arr ); // ["I", "JavaScript"]
+	</script>
+
+	<script type="text/javascript">
+		let arr = ["I", "study", "JavaScript", "right", "now"];
+		// remove 3 first elements and replace them with another
+		arr.splice(0, 3, "Let's", "dance");
+		alert( arr ) // now ["Let's", "dance", "right", "now"]
+	</script>
+
+	<script type="text/javascript">
+		let arr = ["I", "study", "JavaScript", "right", "now"];
+		// remove 2 first elements
+		let removed = arr.splice(0, 2);
+		alert( removed ); // "I", "study" 
+	</script>
+
+	<script type="text/javascript">
+		let arr = ["I", "study", "JavaScript"];
+		// from index 2
+		// delete 0
+		// then insert "complex" and "language"
+		arr.splice(2, 0, "complex", "language");
+		alert( arr ); // "I", "study", "complex", "language", "JavaScript"
+	</script>
+
+	slice
+	<script type="text/javascript">
+		let str = "test";
+		let arr = ["t", "e", "s", "t"];
+		alert( str.slice(1, 3) ); // es
+		alert( arr.slice(1, 3) ); // e,s
+		alert( str.slice(-2) ); // st
+		alert( arr.slice(-2) ); // s,t
+	</script>
+
+	concat
+	<script type="text/javascript">
+		let arr = [1, 2];
+		alert( arr.concat([3, 4])); // 1,2,3,4
+		alert( arr.concat([3, 4], [5, 6])); // 1,2,3,4,5,6
+		alert( arr.concat([3, 4], 5, 6)); // 1,2,3,4,5,6
+	</script>
+
+	<script type="text/javascript">
+		let arr = [1, 2];
+		let arrayLike = {
+ 		0: "something",
+  		length: 1
+		};
+		alert( arr.concat(arrayLike) ); // 1,2,something,else
+	</script>
+
+	<script type="text/javascript">
+		let arr = [1, 2];
+		let arrayLike = {
+  		0: "something",
+  		1: "else",
+  		[Symbol.isConcatSpreadable]: true,
+  		length: 2
+		};
+		alert( arr.concat(arrayLike) ); // 1,2,something,else
+	</script>
+
+	find
+	<script type="text/javascript">
+		let users = [
+  		{id: 1, name: "John"},
+  		{id: 2, name: "Pete"},
+  		{id: 3, name: "Mary"}
+		];
+		let user = users.find(item => item.id == 1);
+		alert(user.name); // John
+	</script>
+
+	filter
+	<script type="text/javascript">
+		let users = [
+  		{id: 1, name: "John"},
+  		{id: 2, name: "Pete"},
+  		{id: 3, name: "Mary"}
+		];
+		let someUsers = users.filter(item => item.id < 3);
+		alert(someUsers.length); // 2
+	</script>
+
+	map
+	<script type="text/javascript">
+		let lengths = ["Bilbo", "Gandalf", "Nazgul"].map(item => item.length)
+		alert(lengths); // 5,7,6
+	</script>
+
+	sort
+	<script type="text/javascript">
+		let arr = [ 1, 2, 15 ];
+		arr.sort(function(a, b) { return a - b; });
+		alert(arr);  // 1, 2, 15
+	</script>
+
+	reverse
+	<script type="text/javascript">
+		let arr = [1, 2, 3, 4, 5];
+		arr.reverse();
+		alert( arr ); // 5,4,3,2,1
+	</script>
+
+	split
+	<script type="text/javascript">
+		let names = 'Bilbo, Gandalf, Nazgul';
+		let arr = names.split(', ');
+		for (let name of arr) {
+  		alert( `A message to ${name}.` ); // A message to Bilbo  (and other names)
+		}
+	</script>
+
+	<script type="text/javascript">
+		let str = "test";
+		alert( str.split('') ); // t,e,s,t
+	</script>
+
+	john
+	<script type="text/javascript">
+		let arr = ['Bilbo', 'Gandalf', 'Nazgul'];
+
+		let str = arr.join(';');
+
+		alert( str ); // Bilbo;Gandalf;Nazgul
+	</script>
+
+	reduce
+	<script type="text/javascript">
+		let arr = [1, 2, 3, 4, 5];
+		let result = arr.reduce((sum, current) => sum + current, 0);
+		alert(result); // 15
+	</script>
+
+	for each
+	<script type="text/javascript">
+		["Bilbo", "Gandalf", "Nazgul"].forEach(alert);
+	</script>
+
+	<script type="text/javascript">
+		["Bilbo", "Gandalf", "Nazgul"].forEach((item, index, array) => {
+  		alert(`${item} is at index ${index} in ${array}`);
+		});
+	</script>
+
+	thisArg
+	<script type="text/javascript">
+		let user = {
+      age: 18,
+      younger(otherUser) {
+        return otherUser.age < this.age;
+      }
+    };
+    
+    let users = [
+      {age: 12},
+      {age: 16},
+      {age: 32}
+    ];
+    
+    // 找到比 users 小的所有 user
+    let youngerUsers = users.filter(user.younger, user);
+    
+    alert(youngerUsers.length); // 2
+	</script>
+
+	<script type="text/javascript">
+		 function camelize(str) {
+    return str
+      .split('-') // my-long-word -> ['my', 'long', 'word']
+      .map( 
+        (word, index) => index == 0 ? word : word[0].toUpperCase() + word.slice(1)
+      ) // ['my', 'long', 'word'] -> ['my', 'Long', 'Word']
+      .join(''); // ['my', 'Long', 'Word'] -> myLongWord
+  }
+   camelize("background-color") == 'backgroundColor';
+	</script>
+
+	<script type="text/javascript">
+		 function filterRangeInPlace(arr, a, b) {
+  
+    		for (let i = 0; i < arr.length; i++) {
+     		let val = arr[i];
+  
+      		// remove if outside of the interval
+      		if (val < a || val > b) {
+        	arr.splice(i, 1);
+        	// i--;
+      		}
+    	}
+  
+  	}
+	let arr = [5, 3, 8, 1];
+
+	filterRangeInPlace(arr, 1, 4); // 删除了从 1 到 4 之外的数字
+
+	alert( arr );
+	</script>
+
+	<script type="text/javascript">
+		let arr = [5, 2, 1, -10, 8];
+		arr.sort((a, b) => b - a);
+		alert(arr);
+	</script>
+
+	<script type="text/javascript">
+		function copySorted(arr){
+			let arr.slice().sort();
+		}
+		let arr = ["HTML", "JavaScript", "CSS"];
+		let sorted = copySorted(arr);
+		alert( sorted );
+		alert( arr );
+	</script>
+
+	<script type="text/javascript">
+		let john = { name: "John", age: 25 };
+		let pete = { name: "Pete", age: 30 };
+		let mary = { name: "Mary", age: 28 };
+		let users = [ john, pete, mary ];
+		let names = users.map(item => item.name);
+		alert( names ); // John, Pete, Mary
+	</script>
+
+	<script type="text/javascript">
+		let john = { name: "John", surname: "Smith", id: 1 };
+		let pete = { name: "Pete", surname: "Hunt", id: 2 };
+		let mary = { name: "Mary", surname: "Key", id: 3 };
+		let users = [ john, pete, mary ];
+		let usersMapped = users.map(user => ({fullname: `${users.name}  ${users.surname}`, id: user.id}));
+	</script>
+
+	<script type="text/javascript">
+		function sortByName(arr) {
+      		arr.sort((a, b) => a.name > b.name);
+      	}
+    
+    let john = { name: "John", age: 25 };
+    let pete = { name: "Pete", age: 30 };
+    let mary = { name: "Mary", age: 28 };
+    
+    let arr = [ john, pete, mary ];
+    
+    sortByName(arr);
+    
+    // 现在排序是：[john, mary, pete]
+    alert(arr[1].name); // Mary
+	</script>
+
+	<script type="text/javascript">
+		function shuffle(array) {
+      	array.sort(() => Math.random() - 0.5);
+    	}
+    
+    	let arr = [1, 2, 3];
+    	shuffle(arr);
+    	alert(arr);
+	</script>
+
+	<script type="text/javascript">
+		function getAverageAge(users){
+			return users.reduce((prev, user) => prev + user.age, 0)/user.length
+		}
+		let john = { name: "John", age: 25 };
+		let pete = { name: "Pete", age: 30 };
+		let mary = { name: "Mary", age: 29 };
+		let arr = [ john, pete, mary ];
+		alert( getAverageAge(arr) ); // 28
+	</script>
+
+	<script type="text/javascript">
+		function unique(arr){
+			let result = [];
+			for (let str of arr){
+				if (!result.include(str)){
+					result.pust(str);
+				}
+			}
+			return result;
+		}
+		let strings = ["Hare", "Krishna", "Hare", "Krishna",
+  		"Krishna", "Krishna", "Hare", "Hare", ":-O"
+		];
+
+		alert( unique(strings) ); // Hare, Krishna, :-O
+	</script>
+</body>
+</html>
