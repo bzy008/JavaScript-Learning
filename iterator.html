@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		let range = {
+			from: 1,
+			to: 5
+		};
+		// 1. 使用 for..of 将会首先调用它：
+		range[Symbol.iterator] = function() {
+			// 2. ...它返回一个迭代器：
+			return {
+        current: this.from,
+        last: this.to,
+    
+        // 3. next() 将在 for..of 的每一轮循环迭代中被调用
+        next() {
+          // 4. 它将会返回 {done:.., value :...} 格式的对象
+          if (this.current <= this.last) {
+            return { done: false, value: this.current++ };
+          } else {
+            return { done: true };
+          }
+        }
+      };
+	};
+	// 现在它可以运行了！
+    for (let num of range) {
+      alert(num); // 1, 然后 2, 3, 4, 5
+    }
+	</script>
+
+	<script type="text/javascript">
+		for (let char of "test") {
+  		alert( char ); // t，然后 e，然后 s，然后 t
+	}
+	</script>
+
+	<script type="text/javascript">
+		let str = "Hello";
+    
+    // 和下面代码完成的功能一致
+    // for (let char of str) alert(char);
+    
+    let iterator = str[Symbol.iterator]();
+    
+    while (true) {
+      let result = iterator.next();
+      if (result.done) break;
+      alert(result.value); // 一个一个输出字符
+    }
+	</script>
+
+	array.from
+	<script type="text/javascript">
+		let arrayLike = {
+  			0: "Hello",
+  			1: "World",
+  			length: 2
+		};
+
+		let arr = Array.from(arrayLike); // (*)
+		alert(arr.pop()); // World（pop 方法生效）
+	</script>
+
+	
+</body>
+</html>

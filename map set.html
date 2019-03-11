@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+	let map = new Map();
+    
+    map.set('1', 'str1');   // 字符串作为 key
+    map.set(1, 'num1');     // 数字作为 key
+    map.set(true, 'bool1'); // 布尔值作为 key
+    
+    // 还记得普通对象 Object 吗？它将会吧所有的键转化为字符串类型
+    // 但是 Map 将会保留键的类型，所以下面这两个是不同的：
+    alert( map.get(1)   ); // 'num1'
+    alert( map.get('1') ); // 'str1'   
+    alert( map.size ); // 3
+	</script>
+
+	let john = { name: "John" };
+	// 存下每个用户的来访次数
+	let visitsCountMap = new Map();
+	// john 是 map 的键
+	visitsCountMap.set(john, 123);
+	alert( visitsCountMap.get(john) ); // 123
+
+	<script type="text/javascript">
+	let recipeMap = new Map([
+      ['cucumber', 500],
+      ['tomatoes', 350],
+      ['onion',    50]
+    ]);
+    
+    // 迭代键（vegetables）
+    for (let vegetable of recipeMap.keys()) {
+      alert(vegetable); // cucumber, tomatoes, onion
+    }
+    
+    // 迭代值（amounts）
+    for (let amount of recipeMap.values()) {
+      alert(amount); // 500, 350, 50
+    }
+    
+    // 迭代键值对 [key, value]
+    for (let entry of recipeMap) { // 和 recipeMap.entries() 一样
+      alert(entry); // cucumber,500（等等）
+    }
+	</script>
+
+	<script type="text/javascript">
+	let set = new Set();
+    let john = { name: "John" };
+    let pete = { name: "Pete" };
+    let mary = { name: "Mary" };
+    
+    // 访客，一些用户来了多次
+    set.add(john);
+    set.add(pete);
+    set.add(mary);
+    set.add(john);
+    set.add(mary);
+    
+    // set 保证了值的唯一
+    alert( set.size ); // 3   
+    for (let user of set) {
+      alert(user.name); // John（然后是 Pete 和 Mary）
+    }
+	</script>
+
+	let set = new Set(["oranges", "apples", "bananas"]);
+	for (let value of set) alert(value);
+	// 和 forEach 相同：
+	set.forEach((value, valueAgain, set) => {
+  	alert(value);
+	});
+
+	<p>WeakMap WeakSet</p>
+	let john = { name: "John" };
+	// map: user => visits count
+	let visitsCountMap = new Map();
+	// john 是 map 的键
+	visitsCountMap.set(john, 123);
+	// 现在 john 离开了，我们不需要他了
+	john = null;
+	// 但是记录依旧在 map 中，我们需要清理它！
+	alert( visitsCountMap.size ); // 1
+	// 它还在内存中，因为 Map 将它作为键
+
+	WeakMap:
+	let john = { name: "John" };
+	let visitsCountMap = new WeakMap();
+	visitsCountMap.set(john, 123);
+	// 现在 john 离开了，我们不需要他了
+	john = null;
+	// 除了 WeakMap 没有其他引用了，
+	// 所以这个对象会自动的从内存和 visitsCountMap 中删除
+
+
+	WeakSet:
+	let messages = [
+    {text: "Hello", from: "John"},
+    {text: "How goes?", from: "John"},
+    {text: "See you soon", from: "Alice"}
+	];
+	// 用数组的元素来填充（3 个元素）
+	let unreadSet = new WeakSet(messages);
+	// 我们可以使用 unreadSet 来看一个 message 是否未读
+	alert(unreadSet.has(messages[1])); // true
+	// 读过之后就讲它从 set 中移除
+	unreadSet.delete(messages[1]); // true
+	// 当我们对消息列表做 shift 操作，set 就会自动清理
+	messages.shift();
+	// 不需要清理 unreadSet，它现在还有两个元素
+	// 可惜并没有方法可以获取元素数目，所以无法显示出来
+	
+	<script type="text/javascript">
+		function unique(arr) {
+    	return Array.from(new Set(arr));
+    }
+    let values = ["Hare", "Krishna", "Hare", "Krishna",
+  	"Krishna", "Krishna", "Hare", "Hare", ":-O"
+	];
+	alert( unique(values) ); // Hare, Krishna, :-O
+	</script>
+
+	<script type="text/javascript">
+		function aclean(arr){
+			let map = new Map();
+			for (let word of arr){
+				let sorted = word.toLowerCase().split('').sort().join('');
+				map.set(sorted, word);
+			}
+			return Array.from(map.values());
+		}
+		let arr = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
+
+		alert( aclean(arr) );
+	</script>
+	
+
+	<script type="text/javascript">
+		let map = new Map();
+		map.set("name", "John");
+		let key = Array.from(map.keys());
+		keys.push("more");
+		alert(keys);
+	</script>
+
+	<script type="text/javascript">
+	let messages = [
+    {text: "Hello", from: "John"},
+    {text: "How goes?", from: "John"},
+    {text: "See you soon", from: "Alice"}
+	];
+
+	let readMessages = new WeakSet();
+
+	// 两个消息已读
+	readMessages.add(messages[0]);
+	readMessages.add(messages[1]);
+	// readMessages 包含两个元素
+
+	// ...让我们再读一遍第一条消息！
+	readMessages.add(messages[0]);
+	// readMessages 仍然有两个不重复的元素
+
+	// 回答：message[0] 已读？
+	alert("Read message 0: " + readMessages.has(messages[0])); // true
+
+	messages.shift();
+	// 现在 readMessages 有一个元素（技术上来说内存可能稍后被清理）
+	</script>
+
+	<script type="text/javascript">
+	let messages = [
+    {text: "Hello", from: "John"},
+    {text: "How goes?", from: "John"},
+    {text: "See you soon", from: "Alice"}
+	];
+	let readMap = new WeakMap();
+	readMap.set(messages[0], new Date(2017, 1, 1));
+	</script>
+</body>
+</html>
