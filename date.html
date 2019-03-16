@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		let now = new Date();
+		alert(now);
+	</script>
+
+	<script type="text/javascript">
+		let date = new Date();
+		date.setSeconds(date.getSeconds() + 70);
+		alert( date );
+	</script>
+
+	Date.now()
+	<script type="text/javascript">
+		let start = Date.now();
+		for (let i=0, i<100000, i++){
+			let doSomething = i * i * i;
+		}
+		let end = Date.now();
+		alert(`The loop took ${end - start} ms`);
+	</script>
+
+	<script type="text/javascript">
+		let date = new Date( Date.parse('2012-01-26T13:51:50.417-07:00') );
+		alert(date);
+	</script>
+
+	<script type="text/javascript">
+		let date = new Date(2012, 1, 20, 3, 12);
+		alert(date);
+	</script>
+
+	<script type="text/javascript">
+		function getWeekDay(date){
+			let days = ['SU', 'MO', 'TU', 'WE', 'TH', 'FR', 'SA'];
+			return days[date.getDay()];
+		}
+		let date = new Date(2014, 0, 3); // 3 Jan 2014
+		alert( getWeekDay(date) ); // FR
+	</script>
+
+	<script type="text/javascript">
+		function getLocalDay(date){
+			let day = date.getDay();
+			if (day == 0){
+				return day = 7;
+			}
+			return day;
+		}
+		alert( getLocalDay(new Date(2012, 0, 3)) ); // 2
+	</script>
+
+	<script type="text/javascript">
+		function getDateAgo(date, days){
+			let dateCopy = new Date(date);
+			dateCopy.setDate(date.getDate() - days);
+			return dateCopy.getDate();
+		}
+		let date = new Date(2015, 0, 2);
+		alert( getDateAgo(date, 1) ); // 1, (1 Jan 2015)
+		alert( getDateAgo(date, 2) ); // 31, (31 Dec 2014)
+		alert( getDateAgo(date, 365) ); // 2, (2 Jan 2014)
+	</script>
+
+	<script type="text/javascript">
+		function getLastDayOfMonth(year, month){
+			let date = new Date(year, month + 1, 0);
+			return date.getDate;
+		}
+		alert( getLastDayOfMonth(2012, 0) ); // 31
+		alert( getLastDayOfMonth(2012, 1) ); // 29
+		alert( getLastDayOfMonth(2013, 1) ); // 28
+	</script>
+
+	<script type="text/javascript">
+		function getSecondsToday(){
+			let d = new Date();
+			return d.getHours(* 3600 + d.getMinutes() * 60 + d.getSeconds();
+		}
+		alert( getSecondsToday() );
+	// 	let now = new Date();
+ 	//  // 创建一个对象，使用当前的 day/month/year
+ 	//  let today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+ 	//  let diff = now - today; // ms difference
+ 	//  return Math.round(diff / 1000); // make seconds
+	</script>
+
+	<script type="text/javascript">
+		function getSecondsToTomorrow(){
+			let now = new Date();
+			let tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate()+1);
+			let diff = tomorrow - now;
+			return Math.round(diff / 1000);
+		}
+	</script>
+
+	<script type="text/javascript">
+  function formatDate(date) {
+  let diff = new Date() - date; // 差值用毫秒表示
+
+  if (diff < 1000) { // 少于一秒
+    return 'right now';
+  }
+
+  let sec = Math.floor(diff / 1000); // 将间隔转化为秒
+
+  if (sec < 60) {
+    return sec + ' sec. ago';
+  }
+
+  let min = Math.floor(diff / 60000); // 将间隔转化为分钟
+  if (min < 60) {
+    return min + ' min. ago';
+  }
+
+  // 格式化日期
+  // 在单个数值之前加 0 日/月/小时/分钟
+  let d = date;
+  d = [
+    '0' + d.getDate(),
+    '0' + (d.getMonth() + 1),
+    '' + d.getFullYear(),
+    '0' + d.getHours(),
+    '0' + d.getMinutes()
+  ].map(component => component.slice(-2)); // 得到每个组件的后两位
+
+  // 将时间信息和日期组合在一起
+ return d.slice(0, 3).join('.') + ' ' + d.slice(3).join(':');
+}
+
+alert( formatDate(new Date(new Date - 1)) ); // "right now"
+
+alert( formatDate(new Date(new Date - 30 * 1000)) ); // "30 sec. ago"
+
+alert( formatDate(new Date(new Date - 5 * 60 * 1000)) ); // "5 min. ago"
+
+// 昨天的日期如： 31.12.2016, 20:00
+alert( formatDate(new Date(new Date - 86400 * 1000)) );
+	</script>
+</body>
+</html>
