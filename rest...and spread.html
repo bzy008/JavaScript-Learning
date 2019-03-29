@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function sumAll(...args){
+			let sum = 0;
+			for (let arg of args){
+				sum += arg;
+			}
+			return sum;
+		}
+		alert(sumAll(1));//1
+	</script>
+
+	<script type="text/javascript">
+		function showName(firstName, lastName, ...titles){
+			alert( firstName + ' ' + lastName ); 
+		
+		alert( titles[0] ); // Consul
+  		alert( titles[1] ); // Imperator
+  		alert( titles.length ); // 2
+  	}
+  	showName("Julius", "Caesar", "Consul", "Imperator");
+	</script>
+
+	"arguments"
+	<script type="text/javascript">
+		function showName() {
+			alert( arguments.length );
+  			alert( arguments[0] );
+  			alert( arguments[1] );
+  			// 它是可遍历的
+  			// for(let arg of arguments) alert(arg);
+		}
+		// 依次弹出提示：2，Julius，Caesar
+		showName("Julius", "Caesar");
+		// 依次弹出提示：1，Ilya，undefined（不存在第二个参数）
+		showName("Ilya");
+	</script>
+
+	spread:
+	<script type="text/javascript">
+		let arr = [3, 5, 1];
+		alert( Math.max(...arr) ); // 5
+	</script>
+
+
+	let arr1 = [1, -2, 3, 4];
+	let arr2 = [8, 3, -8, 1];
+	alert( Math.max(...arr1, ...arr2) ); // 8
+
+	let arr1 = [1, -2, 3, 4];
+	let arr2 = [8, 3, -8, 1];
+	alert( Math.max(1, ...arr1, 2, ...arr2, 25) ); // 25
+
+	let arr = [3, 5, 1];
+	let arr2 = [8, 9, 15];
+	let merged = [0, ...arr, 2, ...arr2];
+	alert(merged); // 0,3,5,1,2,8,9,15（0，然后是 arr 的值，2，然后是 arr2 的值）
+
+	let str = "Hello";
+	alert( [...str] ); // H,e,l,l,o
+
+	
+	let str = "Hello";
+	// Array.from 会将可遍历对象转为数组
+	alert( Array.from(str) ); // H,e,l,l,o
+</body>
+</html>

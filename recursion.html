@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<!-- die dai si lu: for -->
+	<script type="text/javascript">
+		function pow(x, n) {
+			let result = 1;
+			for (let i = 0; i < n; i++) {
+				result *= x;
+			}
+			return result;
+		}
+
+		alert(pow(2, 3));
+
+	</script>
+
+	<!-- di gui si le: -->
+	<script type="text/javascript">
+		function pow(x, n){
+			if (n == 1){
+				return x;
+			} else{
+				return x * pow(x, n-1);
+			}
+		}
+		alert (pow(2, 3));
+	</script>
+
+	<script type="text/javascript">
+		function pow(x, n) {
+  			return (n == 1) ? x : (x * pow(x, n - 1));
+		}
+	</script>
+
+	<script type="text/javascript">
+		let company = { // 是同样的对象，简洁起见做了压缩
+  sales: [{name: 'John', salary: 1000}, {name: 'Alice', salary: 600 }],
+  development: {
+    sites: [{name: 'Peter', salary: 2000}, {name: 'Alex', salary: 1800 }],
+    internals: [{name: 'Jack', salary: 1300}]
+  }
+};
+
+// 用来完成作业的函数
+function sumSalaries(department) {
+  if (Array.isArray(department)) { // 情况 (1)
+    return department.reduce((prev, current) => prev + current.salary, 0); // 求数组的和
+  } else { // 情况 (2)
+    let sum = 0;
+    for (let subdep of Object.values(department)) {
+      sum += sumSalaries(subdep); // 递归调用子部门，对结果求和
+    }
+    return sum;
+  }
+}
+
+alert(sumSalaries(company)); // 6700
+	</script>
+
+	<script type="text/javascript">
+		function sumTo(n){
+			let result = 0;
+			for (let i=1, i<=n, i++){
+				result += i;
+			}
+			return result;
+		}
+		alert (sumTo(100));
+	</script>
+
+	<script type="text/javascript">
+		function sumTo(n){
+			if (n == 1) {
+				return 1;
+			} else {
+				return n + sumTo(n-1);
+			}
+
+		}
+		alert (sumTo(100));
+	</script>
+
+	<script type="text/javascript">
+		function sumTo(n){
+			sum = n * (n + 1) / 2;
+			return sum;
+		}
+	</script>
+
+	<script type="text/javascript">
+		function factorial(n){
+			if (n == 0){
+				return 1;
+			} else {
+				return n * factorial(n-1);
+			}
+		}
+	</script>
+
+	<script type="text/javascript">
+		function fio(n){
+			let a = 1;
+			let b = 1;
+			for (i=3, i<n, i++){
+				let c = a + b;
+				a = b;
+				b = c;
+			}
+			return b;
+		}
+		alert(fib(3));//2
+	</script>
+
+	<script type="text/javascript">
+		let list = {
+  value: 1,
+  next: {
+    value: 2,
+    next: {
+      value: 3,
+      next: {
+        value: 4,
+        next: null
+      }
+    }
+  }
+};
+
+function printList(list) {
+  let tmp = list;
+
+  while (tmp) {
+    alert(tmp.value);
+    tmp = tmp.next;
+  }
+
+}
+
+printList(list);
+	</script>
+
+	<!-- function printList(list){
+		alert(list.value); // 输出当前元素
+
+  		if (list.next) {
+    		printList(list.next); // 链表中其余部分同理
+  			}
+
+		}
+	} -->
+
+	<script type="text/javascript">
+		let list = {
+  value: 1,
+  next: {
+    value: 2,
+    next: {
+      value: 3,
+      next: {
+        value: 4,
+        next: null
+      }
+    }
+  }
+};
+
+function printReverseList(list){
+	if (list.next){
+		printReverseList(list.next)
+	}
+	alert(list.value);
+}
+printReverseList(list);
+
+	</script>
+
+</body>
+</html>
