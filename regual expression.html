@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<!-- <script type="text/javascript">
+		let reg = new RegExp("a");
+		let str = "a";
+		let result = reg.test(str);
+		console.log(result);
+	</script> -->
+
+	<script type="text/javascript">
+		let reg = new RegExp("a", "i");//i=ignore
+		let str = "a";
+		let result = reg.test(str);
+		console.log(reg.test("Abcde"));
+	</script>
+
+	<script type="text/javascript">
+		reg = /a/i;
+		console.log(typeof reg);
+		console.log(reg.test("abc"));
+	</script>
+
+	<script type="text/javascript">
+		reg = /a|b/;// | means or
+		console.log(reg.test("abc"));
+	</script>
+
+	reg = /[a-z]/
+	[A-Z]
+	[A-z]
+	reg = /a[bde]c/ abc or adc or aec
+	reg = /[^ab]/ [^] 除了
+	
+</body>
+</html>

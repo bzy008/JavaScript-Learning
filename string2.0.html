@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		str = "Hello World";
+		let result = str.charAt(6);//str[6]
+		console.log(result);
+		result = String.fromCharCode(0x2692);
+		console.log(result);
+
+		result = str.indexOf("H");
+		result = str.indexOf("H", 1);
+		console.log(result);
+
+		str = "sdefsse";
+		result = str.slice(1, 4);
+		console.log(result);
+		result = str.slice(1);
+		console.log(result);
+		result = str.slice(1, -1);
+		console.log(result);
+		result = str.substr(3, 2);//长度
+		console.log(result);
+
+		str = "abc,bcd,efg,hij";//拆分
+		result = str.split(",");
+		console.log(result);
+		console.log(typeof result);
+		console.log(result.length);
+
+		str = "adsfrggse";
+		result = str.toUpperCase();
+		console.log(result);
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		//email
+		//\w{3,}  (\.\w+)* @ [A-z0-9]+ (\.[A-z]{2,5}){1,2}
+
+		let emailReg =  /^\w{3,}(\.\w+)*@[A-z0-9]+(\.[A-z]{2,5}){1,2}$/;
+		let email = "abc@abc.com";
+		console.log(emailReg.test(email));
+
+	</script>
+</body>
+</html>

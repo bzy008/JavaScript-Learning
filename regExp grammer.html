@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		let reg = /a{3}/;
+		console.log(reg.test("aaabc"));
+		reg = /(ab){3}/;
+		console.log(reg.test("ababab"));
+		reg = /ab{1,3}c/; //出现1-3次
+		//{n} n times {n,m} n-m times {m,} over m times
+		//+ zhi shao 1 ci {1,}
+		//* 0 ge huo duo ge {0,}
+		//? 0 ge huo 1 ge {0,1}
+		console.log(reg.test("aaabc"));
+
+		reg = /^a/; //start with a 
+		console.log(reg.test("aaabc"));
+
+		reg = /a$/; //end with a
+		console.log(reg.test("aaabc"));
+
+		let phoneStr = "13567890123";
+		let phoneReg = /^1[3-9][0-9]{9}$/;
+		console.log(phoneReg.test(phoneStr));
+
+		//.表示任意字符
+		// \.表示.
+		// \转义字符
+		reg = /\./;
+		console.log(reg.test(".b"));
+
+		reg = new RegExp("\\\\");
+		console.log(reg);
+
+		// \w:任意字母，数字，_ [A-z0-9_]
+		// \W:除了字母，数字，_ [^A-z0-9_]
+		// \d:任意数字[0-9]
+		// \D:除了数字[^0-9]
+		// \s:空格
+		// \S:除了空格
+		// \b:单词边界
+		// \B:除了单词边界
+
+		reg = /\bchild\b/;
+		console.log(reg.test("hello child ren"));
+
+		let str = prompt("username:");
+		str = "   he   llo   ";
+		//去除头尾空格
+		console.log(str);
+		str = str.replace(/^\s*|\s*$/g, "");
+		console.log(str);
+
+	</script>
+</body>
+</html>
