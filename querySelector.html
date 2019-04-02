@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		window.onload = function(){
+			var div = document.querySelector(".box1 div");
+			//document.querySelectAll()会将符合条件的元素封装到一个数组中返回
+			console.log(div.innerHTML);
+
+			
+			let body = document.body;
+			let html = document.documentElement;
+			let all = document.all;
+		};
+	</script>
+</head>
+<body>
+	<div class="box1">
+		<div>我是box1中的div</div>
+	</div>
+</body>
+</html>
