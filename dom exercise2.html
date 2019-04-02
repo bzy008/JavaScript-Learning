@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		#box1{
+			width: 100px;
+			height: 100px;
+			background-color: red;
+			padding: 10px;
+			border: 10px solid yellow;
+		}
+	</style>
+
+	<script type="text/javascript">
+		window.onload = function(){
+			let box1 = document.getElementById("box1");
+			let btn01 = document.getElementById("btn01");
+			btn01.onclick = function(){
+				//clientWidth 获取元素宽高 不带px
+				//包括内容区和内边距
+				alert(box1.clientWidth);
+				//offsetWidth 获取元素整个宽高 包括内容区 内边距和边框
+				alert(box1.offsetWidth);
+				//offsetParent 获取当前元素的定位父元素
+				//会获取最近的父元素 没有则返回body
+				let op = box1.offsetParent;
+				alert(op.id);
+
+				//当前元素相当于其定位父元素的水平偏移量
+				alert(box1.offsetLeft);
+
+				//scrollWidth 获取元素整个滚动区域的宽高
+				//scrollLeft、Top 水平/垂直滚动条滚动的距离
+			};
+		};
+	</script>
+</head>
+<body>
+	<button id="btn01">click</button>
+	<br><br>
+	<div id="box3" style="position: relative;">
+		<div id="box2" style="position: relative;">
+			<div id="box1"></div>
+		</div>
+	</div>
+</body>
+</html>

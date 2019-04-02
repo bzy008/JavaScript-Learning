@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<<style type="text/css">
+		#info{
+			width: 300px;
+			height: 500px;
+			background-color: #bfa;
+			overflow: auto;;
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload = function(){
+			let info = document.getElementById("info");
+			let inputs = document.getElementsByTagName("input");
+			//info绑定滚动事件
+			info.onscroll = function(){
+				//检查滚动条是否滚动到底
+				if(info.scrollHeight - info.scrollTop == info.clientHeight){
+					//滚动条到底，使表达项可用
+					inputs[0].disabled = false;//disabled属性可以设置 一个属性是否禁用
+					inputs[1].disabled = false;
+				}
+			};
+		};
+	</script>
+</head>
+<body>
+	<h3>注册</h3>
+	<p id="info">
+		aaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+		bbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+		ccccccccccccccccccccccccccccc
+		bbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+		eeeeeeeeeeeeeeeeeeeeeeeeeeeee
+		ddddddddddddddddddddddddddddd
+		ddddddddddddddddddddddddddddd
+		ddddddddddddddddddddddddddddd
+		ddddddddddddddddddddddddddddd
+		aaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+		bbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+		ccccccccccccccccccccccccccccc
+		bbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+		eeeeeeeeeeeeeeeeeeeeeeeeeeeee
+		ddddddddddddddddddddddddddddd
+		ddddddddddddddddddddddddddddd
+		ddddddddddddddddddddddddddddd
+		ddddddddddddddddddddddddddddd
+		aaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+		bbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+		ccccccccccccccccccccccccccccc
+		bbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+		eeeeeeeeeeeeeeeeeeeeeeeeeeeee
+		ddddddddddddddddddddddddddddd
+		ddddddddddddddddddddddddddddd
+		ddddddddddddddddddddddddddddd
+		ddddddddddddddddddddddddddddd
+		aaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+		bbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+		ccccccccccccccccccccccccccccc
+		bbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+		eeeeeeeeeeeeeeeeeeeeeeeeeeeee
+		ddddddddddddddddddddddddddddd
+		ddddddddddddddddddddddddddddd
+		ddddddddddddddddddddddddddddd
+		ddddddddddddddddddddddddddddd
+		aaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+		bbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+		ccccccccccccccccccccccccccccc
+		bbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+		eeeeeeeeeeeeeeeeeeeeeeeeeeeee
+		ddddddddddddddddddddddddddddd
+		ddddddddddddddddddddddddddddd
+		ddddddddddddddddddddddddddddd
+		ddddddddddddddddddddddddddddd
+	</p>
+	<input type="checkbox" disabled="disabled">已阅
+	<input type="submit" value="注册" disabled="disabled">
+</body>
+</html>
