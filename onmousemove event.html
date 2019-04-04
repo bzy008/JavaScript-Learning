@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		window.onload = function(){
+			let areaDiv = document.getElementById("areaDiv");
+			let showMsg = document.getElementById("showMsg");
+			//onmousemove
+			//事件对象：包含鼠标坐标 键盘按键按下 鼠标滚轮滚动方向
+			areaDiv.onmousemove = function(event){
+				//clientX获取鼠标指针水平坐标
+				//window.兼容IE8
+				event = event || window.event;//结局事件对象兼容性问题
+				let x = event.clientX;
+				let y = event.clientY;
+				showMsg.innerHTML = "x= " + x + ", y= " + y;
+
+			};
+		};
+	</script>
+</head>
+<body>
+	<div id="areaDiv"></div>
+	<div id="showMsg"></div>
+</body>
+</html>

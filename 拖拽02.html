@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		window.onload = function(){
+			let btn01 = document.getElementById("btn01");
+			let btn02 = document.getElementById("btn02");
+			btn01.onclick = function(){
+				alert(1);
+			};
+			btn01.onclick = function(){
+				alert(2);
+			};
+
+			btn01.setCapture();
+		};
+	</script>
+</head>
+<body>
+	<button id="btn01">button01</button>
+	<button id="btn02">button02</button>
+</body>
+</html>

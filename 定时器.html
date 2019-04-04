@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		window.onload = function(){
+			//获取count
+			let count = document.getElementById("count");
+			//count.innerHTML = 2;
+			//隔一段时间执行一次，使用定时调用
+			// for(let i=0; i<9; i++){
+			// 	count.innerHTML = i;
+			// }
+
+			//setInterval()
+			//参数：1.回调函数，该函数每隔一段时间被调用一次
+			//      2.每次调用间隔的时间，单位毫秒
+			let num = 1
+			let timer = setInterval(function(){
+				count.innerHTML = num++;
+				if(num == 11){
+					clearInterval(timer);
+				}
+			}, 1000);
+
+			//clearInterval()可以用来关闭一个定时器
+		};
+		
+	</script>
+</head>
+<body>
+	<hi id="count"></hi>
+</body>
+</html>

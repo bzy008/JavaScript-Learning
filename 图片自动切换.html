@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+	<script type="text/javascript">
+		window.onload = function(){
+			let img1 = document.getElementById("img1");
+
+			//创建一个数组来保存图片路径
+			let imgArr = ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg"];
+
+			//创建一个变量，保存当前图片索引
+			let index = 0;
+
+			//定义一个变量，用来保存定时器标识
+			let timer;
+
+			//为btn01绑定一个单击响应函数
+			let btn01 = document.getElementById("btn01");
+			btn01.onclick = function(){
+
+				//开启定时器之前，需要将上一个定时器关闭
+				clearInterval(timer);
+
+				//开启一个定时器
+				timer = setInterval(function(){
+					//索引自增
+					index++;
+
+					//判断索引是否超过最大索引
+					if(index >= imgArr.length){
+						index = 0;
+					}
+					//或者index = index % imgArr.length;
+
+					//修改img1的src属性
+					img1.src = imgArr[index];
+				}, 1000);
+			};
+
+			let btn02 = document.getElementById("btn02");
+			btn02.onclick = function(){
+				//关闭定时器
+				clearInterval(timer);
+			};
+		};
+	</script>
+</head>
+<body>
+	<button id="btn01">start</button>
+	<button id="btn02">stop</button>
+	<img id="img1" src="1.jpg">
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		#box1{
+			width: 100px;
+			height: 100px;
+			background-color: red;
+		}
+	</style>
+
+	<script type="text/javascript">
+		window.onload = function(){
+			let box1 = document.getElementById("box1");
+			box1.onmousewheel = function(){
+				event = event || window.event;
+
+				// event.wheelDelta 可以获取滚轮滚动方向
+				// 向上滚120，向下滚-120
+				// 只看正负，不看大小
+				if(event.wheelDelta > 0 || event.detail < 0){
+					// alert("up");
+					box1.style.height = box1.clientHeight - 10 + "px";
+
+				}else{
+					box1.style.height = box1.clientHeight + 10 + "px";
+				}
+
+				//取消浏览器默认行为
+				return false;
+			};
+		};
+	</script>
+</head>
+<body>
+	<<div id="box1"></div>
+</body>
+</html>

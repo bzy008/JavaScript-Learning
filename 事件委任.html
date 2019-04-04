@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		window.onload = function(){
+
+			//点击按钮添加超链接
+			let btn01 = document.getElementById("btn01");
+			btn01.onclick = function(){
+				//创建一个li
+				let li = document.createElement("li");
+				li.innerHTML = "<a href='javascript:;' class='link'>newlink1</a>";
+				//将li添加到u1中
+				u1.appendChild(li);
+
+			};
+			let allA = document.getElementsByTagName("a");
+			// for(let i=0; i<allA.length; i++){
+			// 	allA[i].onclick = function(){
+			// 		alert("我是a的单击响应函数");
+			// 	};
+			// }
+
+			//将其绑定给相同的祖先元素
+			u1.onclick = function(event){
+				event = event || window.event;
+				//alert(event.target);
+				//如果触发事件的对象是我们期望的元素，则执行否则不执行
+				if(event.target.className == "link"){
+					alert("我是u1的单击响应函数");
+				}
+			
+
+			};
+		};
+	</script>
+</head>
+<body>
+	<button id="btn01">add link</button>
+	<ul id="u1" style="background-color: #bfa;">
+		<li><a href="javascript:;" class="link">link1</a></li>
+		<li><a href="javascript:;" class="link">link1</a></li>
+		<li><a href="javascript:;" class="link">link1</a></li>
+	</ul>
+</body>
+</html>

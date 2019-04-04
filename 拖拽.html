@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		#box1{
+			width: 100px;
+			height: 100px;
+			background-color: red;
+			position: absolute;
+		}
+
+		#box2{
+			width: 100px;
+			height: 100px;
+			background-color: yellow;
+			position: absolute;
+			left: 200px;
+			top: 200px;
+		}
+	</style>
+
+	<script type="text/javascript">
+		window.onload = function(){
+			let box1 = document.getElementById("box1");
+			box1.onmousedown = function(event){
+				//设置box1捕获所有鼠标按下事件
+
+				box1.setCapture && box1.setCapture();
+				event = event || window.event;
+				//div的偏移量 鼠标.clientX - 元素.offsetLeft
+				//div的偏移量 鼠标.clientY - 元素.offsetTop
+				let ol = event.clientX - box1.offsetLeft;
+				let ot = event.clientY - box1.offsetTop;
+
+				//为document绑定一个onmousemove
+				document.onmousemove = function(event){
+					let left = event.clientX;
+					let top = event.clientY;
+					//修改box1的位置
+					box1.style.left = left+"px";
+					box1.style.top = top+"px";
+				};
+
+				//鼠标松开事件
+				document.onmouseup = function(){
+					document.onmousemove = null;
+
+					//取消document onmouseup事件
+					document.onmouseup = null;
+
+					//当鼠标松开时，取消对事件的捕获
+					box1.releaseCapture && box1.releaseCapture();
+				};
+
+				return false;
+			};
+		};
+	</script>
+</head>
+<body>
+	aaaaaaaa
+	<div id="box1"></div>
+	<div id="box2"></div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		#box1{
+			width: 100px;
+			height: 100px;
+			background-color: red;
+		}
+	</style>
+
+	<script type="text/javascript">
+		window.onload = function(){
+			// onkeydown 按键被按下
+			// onkeyup 按键被松开
+			// 键盘事件一般绑定给可以获取焦点的对象或者是document
+
+			document.onkeydown = function(event){
+				event = event || window.event;
+
+				//通过keyCode获取按键编码
+				//除了keyCode还有altKey ctrlKey shiftKey
+				console.log(event.keyCode);
+			};
+
+			// document.onkeyup = function(){
+			// 	console.log("按键松开");
+			// };
+			let input = document.getElementsByTagName("input")[0];
+			input.onkeydown = function(){
+				console.log("按键被按下");
+
+				//文本框中不能输入数字
+				if(event.keyCode >= 48 && event.keyCode <= 57){
+					return false;
+				}
+
+				//如果在onkeydown中取消默认行为，则输入内容不会出现在文本框中
+				// return false;
+			};
+		};
+	</script>
+</head>
+<body>
+	<div id="box1"></div>
+	<input type="text" name="">
+</body>
+</html>

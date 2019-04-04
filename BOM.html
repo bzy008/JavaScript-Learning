@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+	<script type="text/javascript">
+		//BOM 浏览器对象模型
+		//通过Js操作浏览器
+		//BOM对象
+		//window 浏览器窗口 也是网页中的全局对象
+		//Navigator 当前浏览器信息 识别不同浏览器
+		//Location 浏览器地址栏信息 操作浏览器跳转页面
+		//History 浏览器历史记录 操作浏览器向前或向后翻页 该操作只在当次访问有效
+		//Screen 代表用户的屏幕信息 获取用户的显示器的相关信息
+		//这些BOM对象在浏览器中都是作为window对象的属性保存的 可以通过window对象来使用 也可以直接使用
+		// console.log(location);
+		//userAgent是一个字符串 包含描述浏览器信息的内容 判断浏览器信息
+		//console.log(navigator.userAgent);
+
+		let ua = navigator.userAgent;
+		console.log(ua);
+		if(/firefox/i.test(ua)){
+			alert("firefox");
+		}else if(/chrome/i.test(ua)){
+			alert("chrome");
+		}else if(/msie/i.test(ua)){
+			alert("IE");
+		}else if("ActiveXObject" in window){
+			alert("IE11");
+		}
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
