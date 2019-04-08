@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+
+		#box1{
+			width: 100px;
+			height: 100px;
+			background-color: red;
+			position: absolute;
+			left: 0;
+		}
+
+
+		#box2{
+			width: 100px;
+			height: 100px;
+			background-color: yellow;
+			position: absolute;
+			left: 0;
+			top: 200px;
+		}
+	</style>
+
+	<script type="text/javascript">
+		window.onload = function(){
+			let box1 = document.getElementById("box1");
+			let btn01 = document.getElementById("btn01");
+			let btn02 = document.getElementById("btn02");
+			// let timer;
+			btn01.onclick = function(){
+
+				// //关闭上一个定时器
+				// clearInterval(timer);
+
+				// //开启定时器
+				// timer = setInterval(function(){
+					
+				// 	//获取box1原来的left值
+				// 	let oldValue = parseInt(getStyle(box1, "left"));
+
+				// 	//在旧值基础上增加
+				// 	let newValue = oldValue + 10;
+
+				// 	if(newValue > 800){
+				// 		newValue = 800;
+				// 	}
+
+				// 	//将新值给box1
+				// 	box1.style.left = newValue + "px";
+
+
+				// 	if(newValue == 800){
+				// 		clearInterval(timer);
+				// 	}
+				// }, 30);
+				move(box1, "left", 800, 20);
+
+			};
+
+
+			btn02.onclick = function(){
+
+				// //关闭上一个定时器
+				// clearInterval(timer);
+
+				// //开启定时器
+				// timer = setInterval(function(){
+					
+				// 	//获取box1原来的left值
+				// 	let oldValue = parseInt(getStyle(box1, "left"));
+
+				// 	//在旧值基础上增加
+				// 	let newValue = oldValue - 10;
+
+				// 	if(newValue < 0){
+				// 		newValue = 0;
+				// 	}
+
+				// 	//将新值给box1
+				// 	box1.style.left = newValue + "px";
+
+
+				// 	if(newValue == 0){
+				// 		clearInterval(timer);
+				// 	}
+				// }, 30);
+				move(box1, "left", 0, 10);
+
+			};
+
+			let btn03 = document.getElementById("btn03");
+			btn03.onclick = function(){
+				move(box2, "left", 800, 10);
+			};
+
+			//test
+			let btn04 = document.getElementById("btn04");
+			btn04.onclick = function(){
+				move(box2, "width", 800, 10, function(){
+					move(box2, "height", 400, 10, function(){
+						move(box2, "top", 0, 10, function(){
+
+						});
+					});
+				});
+			};
+
+		};
+
+		//let timer;
+
+		//创建一个函数
+		function move(obj, attr, target, speed, callback){
+
+
+				//关闭上一个定时器
+				clearInterval(obj.timer);
+
+				//获取元素目前位置
+				let current = parseInt(getStyle(obj, attr));
+
+				//判断速度的正负值
+				//0-800 speed为正
+				//800-0 speed为负
+				if(current > target){
+					speed = -speed;
+				}
+
+				//开启定时器
+				//向执行动画的对象中添加一个timer属性，用来保存自己的定时器
+				obj.timer = setInterval(function(){
+					
+					//获取box1原来的left值
+					let oldValue = parseInt(getStyle(obj, attr));
+
+					//在旧值基础上增加
+					let newValue = oldValue + speed;
+
+
+					if(speed < 0 && newValue < target || speed > 0 && newValue > target){
+						newValue = target;
+					}
+
+					//将新值给box1
+					obj.style[attr]= newValue + "px";
+
+
+					if(newValue == target){
+						clearInterval(obj.timer);
+
+						//动画执行完毕，调用回调函数
+						callback && callback();
+					}
+				}, 30);
+
+			};
+
+		
+
+
+		function getStyle(obj, name){
+			if(window.getComputedStyle){
+				return getComputedStyle(obj, null)[name];
+			}else{
+				return obj.currentStyle[name];
+			}
+		}
+	</script>
+</head>
+<body>
+
+	<button id="btn01">点我想右移动</button>
+	<button id="btn02">点我想左移动</button>
+	<button id="btn03">点我box2想右移动</button>
+	<button id="btn04">test</button>
+	<div id="box1"></div>
+	<div id="box2"></div>
+	<div style="width: 0; height: 1000px; border-left: 1px black solid; position: absolute; left: 800px; top: 0"></div>
+</body>
+</html>
