@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	还有一种特殊的用法：setTimeout(func, 0)。
+
+	这样调度可以让 func 尽快执行，但是只有在当前代码执行完后，调度器才会对其进行调用。
+
+	也就是说，函数是在刚好当前代码执行完后执行，换而言之，那就是异步。
+
+	下面例子中，代码会先输出 “Hello”，然后紧接着输出 “World”：
+	setTimeout(() => alert("World"), 0);
+	alert("Hello");
+
+	<script type="text/javascript">
+		function printNumbers(from, to){
+			let current = from;
+			let timerId = setInterval(function(){
+				alert(current);
+				if(current == to){
+					clearInterval(timerId);
+				}
+				current++;
+			}, 1000);
+		}
+		printNumbers(5, 10);
+
+		//递归
+		// function printNumbers(from, to){
+		// 	let current = from;
+		// 	setTimeout(function go(){
+		// 		alert(current);
+		// 		if(current < to){
+		// 			setTimeout(go, 1000);
+		// 		}
+		// 		current++;
+		// 	}, 1000);
+		// }
+	</script>
+</body>
+</html>

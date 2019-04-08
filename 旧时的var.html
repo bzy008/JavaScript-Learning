@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	“var” 没有块级作用域
+	用 var 声明的变量，不是函数范围就是全局的，它们在块内是可见的。
+	循环也是这样，var 无法成为块级或循环的局部变量.
+	可以看到，var 穿透了 if、for 或其它块级代码。这是因为在早期的 JavaScript 里，块没有词法环境。而 var 就是对它的一个回忆。
+	var 声明变量有两点主要区别：
+	1.变量没有块作用域，它们在最小函数级可见；
+	2.变量声明在函数开头处理。
+	<script type="text/javascript">
+		function sayHi() {
+  		var phrase; // 声明在开头工作……
+
+  		alert(phrase); // undefined
+
+  		phrase = "Hello"; // ...赋值 — 当执行到这里时。
+	}
+
+	sayHi();
+	</script>
+
+	<script type="text/javascript">
+		function sum(a){
+			let currentSum = a;
+			function f(b){
+				currentSum += b;
+				return f;
+			}
+			f.toString = function(){
+				return currentSum;
+			}
+			return f;
+		}
+		alert( sum(1)(2) ); // 3
+		alert( sum(5)(-1)(2) ); // 6
+	</script>
+</body>
+</html>

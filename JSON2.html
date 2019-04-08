@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+	<script type="text/javascript">
+		//JSON
+		//只有js自己认识
+		//JSON就是一个特殊格式的字符串，可以被任意语言识别
+		//json字符串中的属性名必须加双引号
+		//json分类1.对象{} 2.数组【】
+		//
+		let obj = '{"name":"wukong", "age":"18", "gender":"male"}';
+		let arr = '{1, 2, 3, "hello", true}';
+
+		//console.log(obj.name);
+
+		// let json = '{"name":"wukong", "age":"18", "gender":"male"}';
+		// let o = JSON.parse(json);
+		// console.log(o.gender);
+
+		//JS --> JSON
+		// let obj3 = {"name":"wukong", "age":"18", "gender":"male"};
+		// let str = JSON.stringify(obj3);
+		// console.log(typeof str);
+
+		//eval() 这个函数可以执行一段字符串形式的js代码，并将结果返回
+		//如果字符串中含有{}，需要在前后加（）
+		//开发中尽量不使用，执行性能差，有安全隐患
+
+		let str2 = "alert('hello');";
+		eval(str2);
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

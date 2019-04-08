@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		let phrase = "Hello";
+
+		if (true) {
+  			let user = "John";
+
+  			function sayHi() {
+    		alert(`${phrase}, ${user}`);
+ 		 }
+	}
+
+	sayHi();//结果是一个错误。函数 sayHi 是在 if 内声明的，所以它只存在于这里面。外部是没有 sayHi 的。
+	</script>
+
+	<script type="text/javascript">
+		function sum(a){
+			//为了使第二个括号有效，第一个（括号）必须返回一个函数。
+			return function(b){
+				return a + b;
+			};
+		}
+
+		alert( sum(1)(2) ); // 3
+	</script>
+
+	<script type="text/javascript">
+		function inBetween(a, b){
+			return function(x){
+				return x >= a && x <= b;
+			};
+		}
+		function inArray(arr){
+			return function(x){
+				return arr.includes(x);
+			};
+		}
+		let arr = [1, 2, 3, 4, 5, 6, 7];
+		alert( arr.filter(inBetween(3, 6)) ); // 3,4,5,6
+		alert( arr.filter(inArray([1, 2, 10])) ); // 1,2
+	</script>
+
+	<script type="text/javascript">
+		function byField(field){
+			return (a, b) => a[field] > b[field] ? 1 : -1;
+		}
+
+		let users = [
+			{ name: "John", age: 20, surname: "Johnson" },
+  			{ name: "Pete", age: 18, surname: "Peterson" },
+  			{ name: "Ann", age: 19, surname: "Hathaway" }
+		];
+
+		users.sort(byField('name'));
+		users.forEach(user => alert(user.name)); // Ann, John, Pete
+		users.sort(byField('age'));
+		users.forEach(user => alert(user.name)); // Pete, Ann, John
+	</script>
+
+	<script type="text/javascript">
+		function makeArmy() {
+
+  			let shooters = [];
+
+  			for(let i = 0; i < 10; i++) {
+    			let shooter = function() { // shooter 函数
+      			alert( i ); // 应该显示它自己的数字
+    		};
+    			shooters.push(shooter);
+  			}
+
+  				return shooters;
+			}
+
+		let army = makeArmy();
+
+		army[0](); // 0
+		army[5](); // 5
+	</script>
+</body>
+</html>
