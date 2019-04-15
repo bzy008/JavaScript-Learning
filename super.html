@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		class Animal {
+
+			constructor(name) {
+				this.speed = 0;
+				this.name = name;
+			}
+
+			run(speed) {
+				this.speed += speed;
+				alert(`${this.name} runs with speed ${this.speed}.`);
+			}
+
+			stop() {
+				this.speed = 0;
+				alert(`${this.name} stopped.`);
+			}
+
+		}
+
+		// 从 Animal 继承
+		class Rabbit extends Animal {
+			hide() {
+				alert(`${this.name} hides!`);
+			}
+		}
+
+		let rabbit = new Rabbit("White Rabbit");
+
+		rabbit.run(5); // 白色兔子会以速度 5 奔跑。
+		rabbit.hide(); // 白色兔子藏了起来！
+	</script>
+
+	
+	Any expression is allowed after extends
+	<script type="text/javascript">
+		function f(phrase) {
+			return class {
+				sayHi() { alert(phrase) }
+			}
+		}
+
+		class User extends f("Hello") {}
+
+		new User().sayHi(); // Hello
+	</script>
+
+	[[HomeObject]]
+	<script type="text/javascript">
+		let animal = {
+			name: "Animal",
+  			eat() {         // [[HomeObject]] == animal
+  				alert(`${this.name} eats.`);
+  			}
+  		};
+
+  		let rabbit = {
+  			__proto__: animal,
+  			name: "Rabbit",
+  			eat() {         // [[HomeObject]] == rabbit
+  				super.eat();
+  			}
+  		};
+
+  		let longEar = {
+  			__proto__: rabbit,
+  			name: "Long Ear",
+  			eat() {         // [[HomeObject]] == longEar
+  				super.eat();
+  			}
+		};
+
+		longEar.eat();  // Long Ear eats.
+	</script>
+
+
+</body>
+</html>

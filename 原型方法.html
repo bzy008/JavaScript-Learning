@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		let animal = {
+			eats: true
+		};
+
+		// 以 animal 为原型创建一个新对象
+		let rabbit = Object.create(animal);
+
+		alert(rabbit.eats); // true
+		alert(Object.getPrototypeOf(rabbit) === animal); // 获取 rabbit 的原型
+
+		Object.setPrototypeOf(rabbit, {}); // 将 rabbit 的原型更改为 {}
+	</script>
+
+	<script type="text/javascript">
+		let animal = {
+			eats: true
+		};
+
+		let rabbit = Object.create(animal, {
+			jumps: {
+				value: true
+			}
+		});
+
+		alert(rabbit.jumps); // true
+	</script>
+
+	<script type="text/javascript">
+		let animal = {
+			eats: true
+		};
+
+		let rabbit = {
+			jumps: true,
+			_proto_: animal
+		};
+		alert(Object.keys(rabbit)); // jumps
+		for(let prop in rabbit) alert(prop); // jumps，然后 eats
+	</script>
+
+	<script type="text/javascript">
+		let dictionary = Object.create(null, {
+  			toString: { // 定义 toString 方法
+    			value() { // value 是一个函数
+    				return Object.keys(this).join();
+    			}
+			}
+		});
+
+		dictionary.apple = "Apple";
+		dictionary.__proto__ = "test";
+		// apple 和 __proto__ 在循环内
+		for(let key in dictionary) {
+  			alert(key); // "apple"，然后 "__proto__"
+		}
+		// 通过 toString 得到逗号分隔的属性值
+		alert(dictionary); // "apple,__proto__"
+	</script>
+</body>
+</html>

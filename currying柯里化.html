@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function curry(func) {
+  			return function(a) {
+    			return function(b) {
+     				return func(a, b);
+    			};
+  			};
+		}
+
+		// 用法
+		function sum(a, b) {
+  			return a + b;
+		}
+
+		let carriedSum = curry(sum);
+
+		alert( carriedSum(1)(2) ); // 3
+	</script>
+
+	<script type="text/javascript">
+		function curry(func) {
+
+			return function curried(...args) {
+				if (args.length >= func.length) {
+					return func.apply(this, args);
+				} else {
+					return function(...args2) {
+						return curried.apply(this, args.concat(args2));
+					}
+				}
+			};
+
+		}
+
+		function sum(a, b, c) {
+			return a + b + c;
+		}
+
+		let curriedSum = curry(sum);
+
+		// 依然可以被正常调用
+		alert( curriedSum(1, 2, 3) ); // 6
+
+		// 得到 curried(1) 的偏函数，然后用另外两个参数调用它
+		alert( curriedSum(1)(2,3) ); // 6
+
+		// 完全柯里化形式
+		alert( curriedSum(1)(2)(3) ); // 6
+	</script>
+
+	<script type="text/javascript">
+		function askPassword(ok, fail) {
+			let password = prompt("Password?", '');
+			if (password == "rockstar") ok();
+			else fail();
+		}
+
+		let user = {
+			name: 'John',
+
+			login(result) {
+				alert( this.name + (result ? ' logged in' : ' failed to log in') );
+			}
+		};
+
+		askPassword(user.login.bind(user, true), user.login.bind(user, false));
+		//or
+		//askPassword(() => user.login(true), () => user.login(false));
+	</script>
+</body>
+</html>

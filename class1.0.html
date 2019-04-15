@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	构造函数模式
+	<script type="text/javascript">
+		function User(name) {
+			this.sayHi = function() {
+				alert(name);
+			};
+		}
+
+		let user = new User("John");
+		user.sayHi(); // John
+	</script>
+
+	工厂类模式
+	<script type="text/javascript">
+		function User(name, birthday) {
+  		// 只对User内的其他方法可见
+  		function calcAge() {
+  			return new Date().getFullYear() - birthday.getFullYear();
+  		}
+
+  		return {
+  			sayHi() {
+  				alert(`${name}, age:${calcAge()}`);
+  			}
+  		};
+  	}
+
+  	let user = User("John", new Date(2000, 0, 1));
+	user.sayHi(); // John, age:17
+	</script>
+
+	基于原型的类
+	<script type="text/javascript">
+		function User(name, birthday) {
+			this._name = name;
+			this._birthday = birthday;
+		}
+
+		User.prototype._calcAge = function() {
+			return new Date().getFullYear() - this._birthday.getFullYear();
+		};
+
+		User.prototype.sayHi = function() {
+			alert(`${this._name}, age:${this._calcAge()}`);
+		};
+
+		let user = new User("John", new Date(2000, 0, 1));
+		user.sayHi(); // John, age:17
+	</script>
+
+
+
+	继承
+	<script type="text/javascript">
+		function Animal(name) {
+			this.name = name;
+		}
+
+		//所有的动物都能吃，对吧？
+		Animal.prototype.eat = function() {
+			alert(`${this.name} eats.`);
+		};
+
+		//和之前一样的Rabbit
+		function Rabbit(name) {
+			this.name = name;
+		}
+
+		Rabbit.prototype.jump = function() {
+			alert(`${this.name} jumps!`);
+		};
+
+		// 设置继承链
+		Rabbit.prototype.__proto__ = Animal.prototype; // (*)
+
+		let rabbit = new Rabbit("White Rabbit");
+		rabbit.eat(); // 兔子也可以吃了
+		rabbit.jump();
+	</script>
+
+	<script type="text/javascript">
+		
+	</script>
+</body>
+</html>

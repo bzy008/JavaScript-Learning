@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		let user = {
+  			firstName: "John"
+		};
+		function func() {
+  			alert(this.firstName);
+		}
+		let funcUser = func.bind(user);
+		funcUser(); // John
+	</script>
+
+	<script type="text/javascript">
+		let user = {
+  			firstName: "John",
+  			say(phrase) {
+    			alert(`${phrase}, ${this.firstName}!`);
+ 			}
+		};
+		let sayHi = user.sayHi.bind(user); // (*)
+
+		sayHi(); // Hello, John!
+
+		setTimeout(sayHi, 1000); // Hello, John!
+	</script>
+
+
+	<script type="text/javascript">
+		let user = {
+  			firstName: "John",
+  			say(phrase) {
+    			alert(`${phrase}, ${this.firstName}!`);
+ 			}
+		};
+		let sayHi = user.sayHi.bind(user);
+		say("Hello"); // Hello, John ("Hello" 参数被传递给了函数 say)
+		say("Bye"); // Bye, John ("Bye" 被传递给了函数 say)
+	</script>
+
+	<script type="text/javascript">
+		function f() {
+  			alert(this.name);
+		}
+
+		f = f.bind( {name: "John"} ).bind( {name: "Pete"} );
+
+		f(); // John
+	</script>
+
+	<script type="text/javascript">
+		function askPassword(ok, fail) {
+  			let password = prompt("Password?", '');
+  			if (password == "rockstar") ok();
+  			else fail();
+		}
+
+		let user = {
+  			name: 'John',
+
+  			loginOk() {
+    			alert(`${this.name} logged in`);
+  			},
+
+  			loginFail() {
+    			alert(`${this.name} failed to log in`);
+  			},
+
+		};
+
+		askPassword(user.loginOk.bind(user), user.loginFail.bind(user));
+	</script>
+</body>
+</html>

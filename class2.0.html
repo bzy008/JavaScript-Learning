@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		class User{
+			constructor(name){
+				this.name = name;
+			}
+
+			sayHi(){
+				alert(this.name);
+			}
+		}
+		let user = new User("John");
+		user.sayHi();
+	</script>
+
+	<script type="text/javascript">
+		class User {
+
+			constructor(name) {
+    		// 调用 setter 方法
+    		this.name = name;
+    	}
+
+    	get name() {
+    		return this._name;
+    	}
+
+    	set name(value) {
+    		if (value.length < 4) {
+    			alert("Name is too short.");
+    			return;
+    		}
+    		this._name = value;
+    	}
+
+    }
+
+    let user = new User("John");
+	alert(user.name); // John
+
+	user = new User(""); // Name too short.
+	</script>
+
+
+	静态方法
+	<script type="text/javascript">
+		class User {
+			static staticMethod() {
+				alert(this === User);
+			}
+		}
+
+		User.staticMethod(); // true
+	</script>
+
+	<script type="text/javascript">
+		class Article {
+			constructor(title, date) {
+				this.title = title;
+				this.date = date;
+			}
+
+			static compare(articleA, articleB) {
+				return articleA.date - articleB.date;
+			}
+		}
+
+		// usage
+		let articles = [
+		new Article("Mind", new Date(2016, 1, 1)),
+		new Article("Body", new Date(2016, 0, 1)),
+		new Article("JavaScript", new Date(2016, 11, 1))
+		];
+
+		articles.sort(Article.compare);
+
+		alert( articles[0].title ); // Body
+	</script>
+
+	<script type="text/javascript">
+		class Article {
+			constructor(title, date) {
+				this.title = title;
+				this.date = date;
+			}
+
+			static createTodays() {
+    		// 记住 this = Article
+    		return new this("Today's digest", new Date());
+    	}
+	}
+
+	let article = Article.createTodays();
+
+	alert( article.title ); // Todays digest
+	</script>
+
+	
+</body>
+</html>
