@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<table id="table">
+  <tr>
+    <td>Your age:</td>
+    <td>
+      <label>
+        <input type="radio" name="age" value="young" checked> less than 18
+      </label>
+      <label>
+        <input type="radio" name="age" value="mature"> from 18 to 50
+      </label>
+      <label>
+        <input type="radio" name="age" value="senior"> more than 60
+      </label>
+    </td>
+  </tr>
+</table>
+<script type="text/javascript">
+	let inputs = table.getElementsByTagName('input');
+  	for (let input of inputs) {
+    alert( input.value + ': ' + input.checked );
+  }
+</script>
+
+
+
+
+	<form name="my-form">
+  		<div class="article">Article</div>
+ 		<div class="long article">Long article</div>
+	</form>
+	<script type="text/javascript">
+		 // 按 name 查找属性
+		 let form = document.getElementsByName('my-form')[0];
+
+  		// 按在表单中的类查找
+  		let articles = form.getElementsByClassName('article');
+  		alert(articles.length); // 2, found two elements with class "article"
+	</script>
+
+
+
+	querySelectAll
+	<ul>
+		<li>The</li>
+		<li>test</li>
+	</ul>
+	<ul>
+		<li>has</li>
+		<li>passed</li>
+	</ul>
+	<script type="text/javascript">
+		let elements = document.querySelectorAll('ul > li:last-child');
+
+		for (let elem of elements) {
+    		alert(elem.innerHTML); // "test", "passed"
+		}
+	</script>
+
+
+
+	closest
+	<h1>Contents</h1>
+
+	<div class="contents">
+		<ul class="book">
+			<li class="chapter">Chapter 1</li>
+			<li class="chapter">Chapter 1</li>
+		</ul>
+	</div>
+	<script type="text/javascript">
+		let chapter = document.querySelector('.chapter'); // LI
+
+  		alert(chapter.closest('.book')); // UL
+  		alert(chapter.closest('.contents')); // DIV
+
+  		alert(chapter.closest('h1')); // null（因为 h1 不是祖先）
+	</script>
+
+
+
+	
+	Live集合
+	<div>First div</div>
+
+	<script>
+		let divs = document.getElementsByTagName('div');
+  		alert(divs.length); // 1
+	</script>
+
+	<div>Second div</div>
+
+	<script>
+  		alert(divs.length); // 2
+	</script>
+
+	querySelectorAll 会返回一个static集合。就像一个固定的元素数字。
+	<div>First div</div>
+	<script type="text/javascript">
+		let divs = document.querySelectorAll('div');
+  		alert(divs.length); // 1
+	</script>
+	<div>Second div</div>
+	<script type="text/javascript">
+		 alert(divs.length); // 1
+	</script>
+
+
+
+
+
+
+
+	<ul>
+    <li>Animals
+      <ul>
+        <li>Mammals
+          <ul>
+            <li>Cows</li>
+            <li>Donkeys</li>
+            <li>Dogs</li>
+            <li>Tigers</li>
+          </ul>
+        </li>
+        <li>Other
+          <ul>
+            <li>Snakes</li>
+            <li>Birds</li>
+            <li>Lizards</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>Fishes
+      <ul>
+        <li>Aquarium
+          <ul>
+            <li>Guppy</li>
+            <li>Angelfish</li>
+          </ul>
+        </li>
+        <li>Sea
+          <ul>
+            <li>Sea trout</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <script type="text/javascript">
+  	for (let li of document.querySelectorAll('li')) {
+      // get the title from the text node
+      let title = li.firstChild.data;
+
+      title = title.trim(); // remove extra spaces from ends
+
+      // get the descendants count
+      let count = li.getElementsByTagName('li').length;
+
+      alert(title + ': ' + count);
+    }
+  </script>
+	
+</body>
+</html>

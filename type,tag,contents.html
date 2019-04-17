@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<p>A paragraph</p>
+  	<div>A div</div>
+  	<script type="text/javascript">
+  		alert( document.body.innerHTML ); // read the current contents
+    	document.body.innerHTML = 'The new BODY!'; // replace it
+  	</script>
+
+  	outerHTML
+  	<div id="elem">Hello <b>World</b></div>
+
+	<script>
+  		alert(elem.outerHTML); // <div id="elem">Hello <b>World</b></div>
+	</script>
+
+	
+
+	注意：与 innerHTML不同，写入到 outerHTML 后，不会改变元素。相反，它在外部环境中作为一个整体取代了它。
+	<div>Hello, world!</div>
+	<script>
+		let div = document.querySelector('div');
+
+  		// replace div.outerHTML with <p>...</p>
+  		div.outerHTML = '<p>A new element!</p>'; // (*)
+
+  		// Wow! The div is still the same!
+  		alert(div.outerHTML); // <div>Hello, world!</div>
+	</script>
+
+
+   	nodeValue/data
+	Hello
+  	<!-- Comment -->
+  	<script>
+    	let text = document.body.firstChild;
+    	alert(text.data); // Hello
+
+    	let comment = text.nextSibling;
+    	alert(comment.data); // Comment
+  	</script>
+
+
+	
+
+	textContent
+	使用 innerHTML，我们将其“作为 HTML” 插入，包含所有 HTML标记。
+	在 textContent中，我们将其“作为文本”插入，所有字符都当做字面量处理。
+  	<div id="news">
+  		<h1>Headline!</h1>
+  		<p>Martians attack people!</p>
+  	</div>
+
+  	<script>
+  		// Headline! Martians attack people!
+  		alert(news.textContent);
+	</script>
+
+
+
+
+	hidden
+	<div>Both divs below are hidden</div>
+
+	<div hidden>With the attribute "hidden"</div>
+
+	<div id="elem">JavaScript assigned the property "hidden"</div>
+
+	<script>
+  		elem.hidden = true;
+	</script>
+
+	
+	blinking效果
+	<div id="elem">A blinking element</div>
+
+	<script>
+  		setInterval(() => elem.hidden = !elem.hidden, 1000);
+	</script>
+</body>
+</html>

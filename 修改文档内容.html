@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<style>
+		.alert {
+			padding: 15px;
+			border: 1px solid #d6e9c6;
+			border-radius: 4px;
+			color: #3c763d;
+			background-color: #dff0d8;
+		}
+	</style>
+	<script type="text/javascript">
+		let div = document.createElement('div');
+		div.className = "alert alert-success";
+		div.innerHTML = "<strong>Hi there!</strong> You've read an important message.";
+		document.body.appendChild(div);
+	</script>
+
+
+
+
+	parentElem.appendChild(node)
+	将 node 作为 parentElem 最后一个子元素。
+	<ol id="list">
+		<li>0</li>
+		<li>1</li>
+		<li>2</li>
+	</ol>
+
+	<script>
+  		let newLi = document.createElement('li');
+  		newLi.innerHTML = 'Hello, world!';
+
+  		list.appendChild(newLi);
+	</script>
+
+
+	parentElem.insertBefore(node, nextSibling)
+	在 parentElem 的 nextSibling 插入 node。
+	<ol id="list">
+		<li>0</li>
+		<li>1</li>
+		<li>2</li>
+	</ol>
+	<script>
+		let newLi = document.createElement('li');
+		newLi.innerHTML = 'Hello, world!';
+
+		list.insertBefore(newLi, list.children[1]);
+	</script>
+
+
+
+
+	<ol id="ol">
+		<li>0</li>
+		<li>1</li>
+		<li>2</li>
+	</ol>
+
+	<script>
+		ol.before('before');
+		ol.after('after');
+
+		let prepend = document.createElement('li');
+		prepend.innerHTML = 'prepend';
+		ol.prepend(prepend);
+
+		let append = document.createElement('li');
+		append.innerHTML = 'append';
+		ol.append(append);
+	</script>
+
+
+	cloneNode
+	<style>
+		.alert {
+			padding: 15px;
+			border: 1px solid #d6e9c6;
+			border-radius: 4px;
+			color: #3c763d;
+			background-color: #dff0d8;
+		}
+	</style>
+
+	<div class="alert" id="div">
+		<strong>Hi there!</strong> You've read an important message.
+	</div>
+
+	<script>
+  		let div2 = div.cloneNode(true); // 克隆信息
+  		div2.querySelector('strong').innerHTML = 'Bye there!'; // 改变克隆信息
+
+  		div.after(div2); // 显示克隆信息在已经存在的 div 后
+	</script>
+
+
+
+
+
+	remove
+	<style>
+		.alert {
+			padding: 15px;
+			border: 1px solid #d6e9c6;
+			border-radius: 4px;
+			color: #3c763d;
+			background-color: #dff0d8;
+		}
+	</style>
+
+	<script>
+		let div = document.createElement('div');
+		div.className = "alert alert-success";
+		div.innerHTML = "<strong>Hi there!</strong> You've read an important message.";
+
+		document.body.append(div);
+		setTimeout(() => div.remove(), 1000);
+  		// or setTimeout(() => document.body.removeChild(div), 1000);
+	</script>
+
+
+
+
+
+
+	<div id="elem1"></div>
+	<div id="elem2"></div>
+	<div id="elem3"></div>
+	<script>
+		let text = '<b>text</b>';
+
+		elem1.append(document.createTextNode(text));//<b>text</b>
+		elem2.textContent = text;//<b>text</b>
+		elem3.innerHTML = text;//text
+	</script>
+
+
+	<ol id="elem">
+  		<li>Hello</li>
+  		<li>World</li>
+	</ol>
+	<script type="text/javascript">
+		function clear(elem){
+			while(elem.firstChild){
+				elem.firstChild.remove();
+			}
+		}
+		//or
+		//functin clear(elem){
+		// 	elem.innerHTML = '';
+		// }
+	</script>
+
+
+
+
+	<h1>Create a list</h1>
+
+  <script>
+    let ul = document.createElement('ul');
+    document.body.append(ul);
+
+    while (true) {
+      let data = prompt("Enter the text for the list item", "");
+
+      if (!data) {
+        break;
+      }
+
+      let li = document.createElement('li');
+      li.textContent = data;
+      ul.append(li);
+    }
+  </script>
+
+
+
+	 <div id="container"></div>
+
+  <script>
+    let data = {
+      "Fish": {
+        "trout": {},
+        "salmon": {}
+      },
+
+      "Tree": {
+        "Huge": {
+          "sequoia": {},
+          "oak": {}
+        },
+        "Flowering": {
+          "redbud": {},
+          "magnolia": {}
+        }
+      }
+    };
+
+    function createTree(container, obj) {
+      container.append(createTreeDom(obj));
+    }
+
+    function createTreeDom(obj) {
+      // if there's no children, then the call returns undefined
+      // and the <ul> won't be created
+      if (!Object.keys(obj).length) return;
+
+      let ul = document.createElement('ul');
+
+      for (let key in obj) {
+        let li = document.createElement('li');
+        li.innerHTML = key;
+
+        let childrenUl = createTreeDom(obj[key]);
+        if (childrenUl) {
+          li.append(childrenUl);
+        }
+
+        ul.append(li);
+      }
+
+      return ul;
+    }
+
+    let container = document.getElementById('container');
+    createTree(container, data);
+  </script>
+
+
+	
+
+	<ul>
+    <li>Animals
+      <ul>
+        <li>Mammals
+          <ul>
+            <li>Cows</li>
+            <li>Donkeys</li>
+            <li>Dogs</li>
+            <li>Tigers</li>
+          </ul>
+        </li>
+        <li>Other
+          <ul>
+            <li>Snakes</li>
+            <li>Birds</li>
+            <li>Lizards</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>Fishes
+      <ul>
+        <li>Aquarium
+          <ul>
+            <li>Guppy</li>
+            <li>Angelfish</li>
+          </ul>
+        </li>
+        <li>Sea
+          <ul>
+            <li>Sea trout</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+
+  <script>
+    let lis = document.getElementsByTagName('li');
+
+    for (let li of lis) {
+      // get the count of all <li> below this <li>
+      let descendantsCount = li.getElementsByTagName('li').length;
+      if (!descendantsCount) continue;
+
+      // add directly to the text node (append to the text)
+      li.firstChild.data += ' [' + descendantsCount + ']';
+    }
+  </script>
+
+
+
+
+  创建日历
+  <style>
+    table {
+      border-collapse: collapse;
+    }
+
+    td,
+    th {
+      border: 1px solid black;
+      padding: 3px;
+      text-align: center;
+    }
+
+    th {
+      font-weight: bold;
+      background-color: #E6E6E6;
+    }
+  </style>
+</head>
+
+<body>
+
+
+  <div id="calendar"></div>
+
+  <script>
+    function createCalendar(elem, year, month) {
+
+      let mon = month - 1; // months in JS are 0..11, not 1..12
+      let d = new Date(year, mon);
+
+      let table = '<table><tr><th>MO</th><th>TU</th><th>WE</th><th>TH</th><th>FR</th><th>SA</th><th>SU</th></tr><tr>';
+
+      // spaces for the first row
+      // from Monday till the first day of the month
+      // * * * 1  2  3  4
+      for (let i = 0; i < getDay(d); i++) {
+        table += '<td></td>';
+      }
+
+      // <td> with actual dates
+      while (d.getMonth() == mon) {
+        table += '<td>' + d.getDate() + '</td>';
+
+        if (getDay(d) % 7 == 6) { // sunday, last day of week - newline
+          table += '</tr><tr>';
+        }
+
+        d.setDate(d.getDate() + 1);
+      }
+
+      // add spaces after last days of month for the last row
+      // 29 30 31 * * * *
+      if (getDay(d) != 0) {
+        for (let i = getDay(d); i < 7; i++) {
+          table += '<td></td>';
+        }
+      }
+
+      // close the table
+      table += '</tr></table>';
+
+      elem.innerHTML = table;
+    }
+
+    function getDay(date) { // get day number from 0 (monday) to 6 (sunday)
+      let day = date.getDay();
+      if (day == 0) day = 7; // make Sunday (0) the last day
+      return day - 1;
+    }
+
+    createCalendar(calendar, 2012, 8);
+  </script>
+
+
+	setInterval 的彩色时钟
+  <style>
+    .hour {
+      color: red
+    }
+
+    .min {
+      color: green
+    }
+
+    .sec {
+      color: blue
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="clock">
+    <span class="hour">hh</span>:<span class="min">mm</span>:<span class="sec">ss</span>
+  </div>
+
+  <script>
+    let timerId;
+
+    function update() {
+      let clock = document.getElementById('clock');
+      let date = new Date();
+
+      let hours = date.getHours();
+      if (hours < 10) hours = '0' + hours;
+      clock.children[0].innerHTML = hours;
+
+      let minutes = date.getMinutes();
+      if (minutes < 10) minutes = '0' + minutes;
+      clock.children[1].innerHTML = minutes;
+
+      let seconds = date.getSeconds();
+      if (seconds < 10) seconds = '0' + seconds;
+      clock.children[2].innerHTML = seconds;
+    }
+
+    function clockStart() {
+      timerId = setInterval(update, 1000);
+      update(); // <--  start right now, don't wait 1 second till the first setInterval works
+    }
+
+    function clockStop() {
+      clearInterval(timerId);
+    }
+
+    clockStart();
+  </script>
+
+
+
+  sort the table
+	<table id="table">
+    <tr>
+      <th>Name</th>
+      <th>Surname</th>
+      <th>Age</th>
+    </tr>
+    <tr>
+      <td>John</td>
+      <td>Smith</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <td>Pete</td>
+      <td>Brown</td>
+      <td>15</td>
+    </tr>
+    <tr>
+      <td>Ann</td>
+      <td>Lee</td>
+      <td>5</td>
+    </tr>
+  </table>
+
+  <script>
+    let sortedRows = Array.from(table.rows)
+      .slice(1)
+      .sort((rowA, rowB) => rowA.cells[0].innerHTML > rowB.cells[0].innerHTML ? 1 : -1);
+
+    table.tBodies[0].append(...sortedRows);
+//     使用 table.querySelectorAll('tr') 获取所有 <tr>，然后生成数组，因为我们需要用到数组方法。
+
+// 第一个 TR（table.rows[0]）实际上是 table 头，所以我们需要调用 .slice(1) 裁剪掉。
+
+// 比较 <td> 的内容（字符在字符集中的序号），进行排序。
+
+// 现在使用 .append(...sortedRows) 插入节点。
+
+// table 永远包含 元素，所以我们需要考虑到它，并将内容插入到其中：单纯的调用 table.append(...) 将会失败。
+
+// 请留意：我们没有移除操作，只进行“重复插入”，它们会将旧的位置的内容自动去除。
+  </script>
+
+</body>
+</html>

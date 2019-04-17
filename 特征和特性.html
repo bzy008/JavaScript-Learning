@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div data-widget-name="menu">Choose the genre</div>
+	<script type="text/javascript">
+		//getting it
+		let elem = document.querySelector('[data-widget-name]');
+		//reading the value
+		alert(elem.getAttribute('data-widget-name'));
+	</script>
+
+	<a name="list">The list:</a>
+	<ul>
+		<li><a href="http://google.com">http://google.com</a></li>
+		<li><a href="/tutorial">/tutorial.html</a></li>
+		<li><a href="local/path">local/path</a></li>
+		<li><a href="ftp://ftp.com/my.zip">ftp://ftp.com/my.zip</a></li>
+		<li><a href="http://nodejs.org">http://nodejs.org</a></li>
+		<li><a href="http://internal.com/test">http://internal.com/test</a></li>
+	</ul>
+	<script type="text/javascript">
+		// 查找所有 href 中包含：// 的链接
+		// 但 href 不是以 http://internal.com 开头
+		let selector = 'a[href*="://"]:not([href^="http://internal.com"])';
+    	let links = document.querySelectorAll(selector);
+    	links.forEach(link => link.style.color = 'orange');
+	</script>
+
+	or
+	<!-- <script type="text/javascript">
+		let links = document.querySelectorAll('a');
+
+		for (let link of links) {
+			let href = link.getAttribute('href');
+    		if (!href) continue; // no attribute
+
+  			if (!href.includes('://')) continue; // no protocol
+
+  			if (href.startsWith('http://internal.com')) continue; // internal
+
+  			link.style.color = 'orange';
+		}
+	</script> -->
+</body>
+</html>
