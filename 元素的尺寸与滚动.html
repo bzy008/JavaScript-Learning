@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	let scrollBottom = elem.scrollHeight - elem.scrollTop - elem.clientHeight;
+	（完全高度）减去（已滚动的高度）减去（可见部分的高度）— 得到的结果就是下方隐藏部分的高度。
+
+
+	<script type="text/javascript">
+		// 创建一个包含滚动条的块
+		let div = document.createElement('div');
+
+		div.style.overflowY = 'scroll';
+		div.style.width = '50px';
+		div.style.height = '50px';
+
+		// 必须添加到文档中，否则尺寸为 0
+		document.body.append(div);
+		let scrollWidth = div.offsetWidth - div.clientWidth;
+
+		div.remove();
+
+		alert(scrollWidth);
+	</script>
+
+
+	图片居中
+	<style>
+    #field {
+      width: 200px;
+      border: 10px groove black;
+      background-color: #00FF00;
+      position: relative;
+    }
+
+    #ball {
+      position: absolute;
+    }
+  </style>
+</head>
+
+<body>
+
+
+  <div id="field">
+    <img src="https://en.js.cx/clipart/ball.svg" width="40" height="40" id="ball"> . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+  </div>
+
+
+  <script>
+    // ball.offsetWidth=0 before image loaded!
+    // to fix: set width
+    ball.style.left = Math.round(field.clientWidth / 2 - ball.offsetWidth / 2) + 'px'
+    ball.style.top = Math.round(field.clientHeight / 2 - ball.offsetHeight / 2) + 'px'
+  </script>
+
+
+  文档可视范围的宽度/高度（内容区域的宽高）：document.documentElement.clientWidth/Height
+
+  读取当前的滚动：window.pageYOffset/pageXOffset
+
+  改变当前的滚动：
+	window.scrollTo(pageX,pageY) — 绝对定位
+	window.scrollBy(x,y) — 相对当前位置的滚动
+	elem.scrollIntoView(top) — 滚动到正好elem可视的位置（elem 与窗口的顶部/底部对齐）
+
+
+
+	滚动到视图
+	调用 elem.scrollIntoView(top) 会使 elem 滚动到可视范围。它有一个结论：
+	如果 top=true（默认值），页面滚动使 elem 会出现到窗口顶部。元素的上边缘与窗口顶部对齐。
+	如果 top=false，则页面滚动使 elem 会出现在窗口底部。元素的下边缘与窗口底部对齐。
+
+
+	想让这个文档禁止滚动，设置document.body.style.overflow = "hidden"就够了。该页面将“冻结”其当前滚动。
+	document.body.style.overflow = ''; huifu
+</body>
+</html>
