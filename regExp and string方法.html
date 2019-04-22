@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		let str = "Fame is the thirst of youth";
+
+		let result = str.match( /fame/i );
+
+		alert( result[0] );    // Fame（匹配项）
+		alert( result.index ); // 0（在最开始的位置 0）
+		alert( result.input ); // “Fame is the thirst of youth”（字符串本身）
+	</script>
+
+	<script type="text/javascript">
+		let str = "JavaScript is a programming language";
+
+		let result = str.match( /JAVA(SCRIPT)/i );
+
+		alert( result[0] ); // JavaScript（整个匹配项）
+		alert( result[1] ); // script（对应括号里的匹配项）
+		alert( result.index ); // 0
+		alert( result.input ); // JavaScript is a programming language
+	</script>
+
+	<script type="text/javascript">
+		let str = "HO-Ho-ho!";
+
+		let result = str.match( /ho/ig );
+
+		alert( result ); // HO, Ho, ho（所有的匹配项，大小写不敏感）
+	</script>
+
+	
+	str.split(regexp|substr, limit)
+	alert('12-34-56'.split('-')) // [12, 34, 56]
+	alert('12-34-56'.split(/-/)) // [12, 34, 56]
+
+
+
+
+	str.replace(str|reg, str|func)
+	// 把横线替换成冒号
+	alert('12-34-56'.replace("-", ":")) // 12:34-56
+	alert( '12-34-56'.replace( /-/g, ":" ) )  // 12:34:56
+
+
+	
+	<script type="text/javascript">
+		let str = "John Doe, John Smith and John Bull.";
+
+		// 对于每个 John — 替换成 Mr.John
+		alert(str.replace(/John/g, 'Mr.$&'));
+		// "Mr.John Doe, Mr.John Smith and Mr.John Bull.";
+	</script>
+	
+
+	<script type="text/javascript">
+		let str = "John Smith";
+
+		alert(str.replace(/(John) (Smith)/, '$2, $1')) // Smith, John
+	</script>
+
+	<script type="text/javascript">
+		let i = 0;
+
+		// 将每个“ho”都替换成函数所返回的结果
+		alert("HO-Ho-ho".replace(/ho/gi, function() {
+  			return ++i;
+		})); // 1-2-3
+	</script>
+
+	<script type="text/javascript">
+		// 显示并且替换所有的匹配项
+		function replacer(str, offset, s) {
+			alert(`Found ${str} at position ${offset} in string ${s}`);
+			return str.toLowerCase();
+		}
+
+		let result = "HO-Ho-ho".replace(/ho/gi, replacer);
+		alert( 'Result: ' + result ); // Result: ho-ho-ho
+
+		// shows each match:
+		// Found HO at position 0 in string HO-Ho-ho
+		// Found Ho at position 3 in string HO-Ho-ho
+		// Found ho at position 6 in string HO-Ho-ho
+	</script>
+
+	<script type="text/javascript">
+		function replacer(str, name, surname, offset, s) {
+  			// name is the first parentheses, surname is the second one
+  			return surname + ", " + name;
+  		}
+
+  		let str = "John Smith";
+
+		alert(str.replace(/(John) (Smith)/, replacer)) // Smith, John
+	</script>
+
+
+	regexp.test(str)
+	<script type="text/javascript">
+		let str = "I love JavaScript";
+
+		// 这两条语句是一样的
+		alert( /love/i.test(str) ); // true
+		alert( str.search(/love/i) != -1 ); // true
+	</script>
+
+	<script type="text/javascript">
+		let str = "Bla-bla-bla";
+
+		alert( /love/i.test(str) ); // false
+		alert( str.search(/love/i) != -1 ); // false
+	</script>
+
+	regexp.exec(str)
+	<script type="text/javascript">
+		let str = 'A lot about JavaScript at https://javascript.info';
+
+		let regexp = /javascript/ig;
+
+		let result;
+
+		while (result = regexp.exec(str)) {
+			alert( `Found ${result[0]} at ${result.index}` );
+		}
+	</script>
+
+
+	<script type="text/javascript">
+		let str = 'A lot about JavaScript at https://javascript.info';
+
+		let regexp = /javascript/ig;
+		regexp.lastIndex = 30;
+
+		alert( regexp.exec(str).index ); // 34，搜索从位置 30 开始
+	</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<select id="select">
+		<option value="apple">Apple</option>
+		<option value="pear">Pear</option>
+		<option value="banana">Banana</option>
+	</select>
+
+	<script>
+  		// 所有这三行做的是同一件事
+  		select.options[2].selected = true;
+  		select.selectedIndex = 2;
+  		select.value = 'banana';
+	</script>
+
+	<select id="select" multiple>
+		<option value="blues" selected>Blues</option>
+		<option value="rock" selected>Rock</option>
+		<option value="classic">Classic</option>
+	</select>
+
+	<script>
+  		// 从 multi-select 中获取所有选定的值
+  		let selected = Array.from(select.options)
+  		.filter(option => option.selected)
+  		.map(option => option.value);
+  		alert(selected); // blues，rock
+	</script>
+
+	
+</body>
+</html>
