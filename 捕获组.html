@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		alert( 'Gogogo now!'.match(/(go)+/i) ); // "Gogogo"
+	</script>
+
+	email
+	<script type="text/javascript">
+		let reg = /[-.\w]+@([\w-]+\.)+[\w-]{2,20}/g;
+
+		alert("my@mail.com @ his@site.com.uk".match(reg)); // my@mail.com,his@site.com.uk
+	</script>
+
+	<script type="text/javascript">
+		let str = '<span class="my">';
+
+		let reg = /<(([a-z]+)\s*([^>]*))>/;
+
+		let result = str.match(reg);
+		alert(result); // <span class="my">, span class="my", span, class="my"
+	</script>
+
+	<script type="text/javascript">
+		let reg = /#([a-f0-9]{3}){1,2}\b/gi;
+
+		let str = "color: #3f3; background-color: #AA00ef; and: #abcd";
+
+		alert( str.match(reg) ); // #3f3 #AA0ef
+	</script>
+
+
+	查找正数
+	<script type="text/javascript">
+		let reg = /\d+(\.\d+)?/g;
+
+		let str = "1.5 0 12. 123.4.";
+
+		alert( str.match(re) );   // 1.5, 0, 12, 123.4
+	</script>
+
+
+	查找所有数字
+	<script type="text/javascript">
+		let reg = /-?\d+(\.\d+)?/g;
+
+		let str = "-1.5 0 2 -123.4.";
+
+		alert( str.match(reg) );   // -1.5, 0, 2, -123.4
+	</script>
+
+
+	解析算数表达式
+	<script type="text/javascript">
+		function parse(expr) {
+			let reg = /(-?\d+(?:\.\d+)?)\s*([-+*\/])\s*(-?\d+(?:\.\d+)?)/;
+
+			let result = expr.match(reg);
+
+			if (!result) return;
+			result.shift();
+
+			return result;
+		}
+
+		alert( parse("-1.23 * 3.45") );  // -1.23, *, 3.45
+	</script>
+
+
+	在模式中，可以用 \n 引用组。
+	<script type="text/javascript">
+		let str = "He said: \"She's the one!\".";
+
+		let reg = /(['"])(.*?)\1/g;
+
+		alert( str.match(reg) ); // "She's the one!"
+	</script>
+</body>
+</html>

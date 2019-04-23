@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	数量 {n}
+	<script type="text/javascript">
+		alert( "I'm 12345 years old".match(/\d{5}/) ); //  "12345"
+		alert( "I'm not 12, but 1234 years old".match(/\d{3,5}/) ); // "1234"
+		alert( "I'm not 12, but 345678 years old".match(/\d{3,}/) ); // "345678"
+	</script>
+
+	<script type="text/javascript">
+		let str = "+7(903)-123-45-67";
+
+		let numbers = str.match(/\d{1,}/g);
+
+		alert(numbers); // 7,903,123,45,67
+	</script>
+
+	缩写
+
+	+
+	代表“一个或多个”，相当于 {1,}。
+	例如，\d+ 用来查找所有数字：
+	<script type="text/javascript">
+		let str = "+7(903)-123-45-67";
+
+		alert( str.match(/\d+/g) ); // 7,903,123,45,67
+	</script>
+
+
+	?
+	代表“零个或一个”，相当于 {0,1}。换句话说，它使得符号变得可选。
+	<script type="text/javascript">
+		let str = "Should I write color or colour?";
+
+		alert( str.match(/colou?r/g) ); // color, colour
+	</script>
+
+	* ：代表着“零个或多个”，相当于 {0,}。也就是说，这个字符可以多次出现或不出现。
+	<script type="text/javascript">
+		alert( "100 10 1".match(/\d0*/g) ); // 100, 10, 1
+		alert( "100 10 1".match(/\d0+/g) ); // 100, 10
+	</script>
+
+
+	正则表达式“浮点数”（带浮点的数字）：\d+\.\d+
+	<script type="text/javascript">
+		alert( "0 1 12.345 7890".match(/\d+\.\d+/g) ); // 12.345
+	</script>
+
+
+	正则表达式“打开没有属性的 HTML 标记”，比如 <span> 或 <p>：/<[a-z]+>/i
+	<script type="text/javascript">
+		alert( "<body> ... </body>".match(/<[a-z]+>/gi) ); // <body>
+	</script>
+
+	正则表达式“打开没有属性的HTML标记”（改进版）：/<[a-z][a-z0-9]*>/i
+	<script type="text/javascript">
+		alert( "<h1>Hi!</h1>".match(/<[a-z][a-z0-9]*>/gi) ); // <h1>
+	</script>
+
+	正则表达式“打开没有属性的HTML标记”：/<\/?[a-z][a-z0-9]*>/i
+	<script type="text/javascript">
+		alert( "<h1>Hi!</h1>".match(/<\/?[a-z][a-z0-9]*>/gi) ); // <h1>, </h1>
+	</script>
+
+	<script type="text/javascript">
+		let reg = /\.{3,}/g;
+		alert( "Hello!... How goes?.....".match(reg) ); // ..., .....
+	</script>
+
+	<script type="text/javascript">
+		let reg = /#[a-f0-9]{6}/gi;
+
+		let str = "color:#121212; background-color:#AA00ef bad-colors:f#fddee #fd2"
+
+		alert( str.match(reg) );  // #121212,#AA00ef
+	</script>
+</body>
+</html>

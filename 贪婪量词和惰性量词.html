@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	贪婪搜索
+	<script type="text/javascript">
+		let reg = /".+"/g;
+
+		let str = 'a "witch" and her "broom" is one';
+
+		alert( str.match(reg) ); // "witch" and her "broom"
+	</script>
+
+	懒惰模式
+	懒惰模式中的量词与贪婪模式中的是相反的。它想要“重复最少次数”。
+
+	我们能够通过在量词之后添加一个问号 '?' 来启用它，所以匹配模式变为 *? 或 +?，甚至将 '?' 变为 ??。
+
+	这么说吧：通常，一个问号 ? 就是一个它本身的量词（0 或 1），但如果添加另一个量词（甚至可以是它自己），就会有不同的意思 —— 它将匹配的模式从贪婪转为懒惰。
+	<script type="text/javascript">
+		let reg = /".+?"/g;
+
+		let str = 'a "witch" and her "broom" is one';
+
+		alert( str.match(reg) ); // witch, broom
+	</script>
+
+	<script type="text/javascript">
+		alert( "123 456".match(/\d+ \d+?/g) ); // 123 4
+	</script>
+
+
+
+	替代方法
+	<script type="text/javascript">
+		let reg = /"[^"]+"/g;
+
+		let str = 'a "witch" and her "broom" is one';
+
+		alert( str.match(reg) ); // witch, broom
+	</script>
+
+
+	查找 HTML 注释
+	<script type="text/javascript">
+		let reg = /<!--[\s\S]*?-->/g;
+
+		let str = `... <!-- My -- comment
+ 		test --> ..  <!----> ..
+		`;
+
+		alert( str.match(reg) ); // '<!-- My -- comment \n test -->', '<!---->'
+	</script>
+
+
+	寻找 HTML 标签
+	<script type="text/javascript">
+		let reg = /<[^<>]+>/g;
+
+		let str = '<> <a href="/"> <input type="radio" checked> <b>';
+
+		alert( str.match(reg) ); // '<a href="/">', '<input type="radio" checked>', '<b>'
+	</script>
+</body>
+</html>
